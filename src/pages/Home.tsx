@@ -356,10 +356,10 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
     setSubmitError(null);
 
     // Hardcoded credentials for instant client-side preview execution
-    const sheetsWebhookUrl = "https://api.sheetbest.com/sheets/a4efc035-6d4f-4121-8458-854534da9e52";
-    const emailjsServiceId = "service_z8973h1";
-    const emailjsTemplateId = "template_e0vn9oo";
-    const emailjsPublicKey = "7JnLCzVOg_JuHyZlt";
+    const sheetsWebhookUrl = import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK_URL as string;
+    const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+    const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+    const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
 
     // Format clean payloads
     const serialNumber = new Date().getTime().toString();
@@ -642,7 +642,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             {/* Typography Content Column */}
             <ScrollReveal delay={150} className="flex flex-col justify-center">
               <span className="text-[#E61A22] font-sans font-extrabold text-xs uppercase tracking-[0.2em] mb-3 inline-block">
-                The Prophetic Declaration of the House
+                The Prophetic Declaration for the Year
               </span>
               <h2 className="font-sans font-extrabold text-2xl md:text-4xl tracking-tight uppercase leading-tight mb-5">
                 {currentThemeData.themeTitle}
@@ -715,7 +715,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             <ScrollReveal className="flex flex-col justify-center">
               <div className="mb-4">
                 <span className="inline-block bg-[#E61A22]/10 text-[#E61A22] font-sans font-bold text-xs uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-md">
-                  FOUNDATIONAL MANIFESTO
+                  FOUNDATIONAL MANDATE
                 </span>
               </div>
 
@@ -771,10 +771,10 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                 
                 <div className="bg-[#0A0A0A] text-white p-5 mt-2.5 rounded-md">
                   <span className="font-sans font-bold text-[10px] uppercase tracking-[0.2em] text-[#E61A22] mb-1.5 block">
-                    Kingdom Oversight
+                    General Overseer
                   </span>
                   <h4 className="font-sans font-bold text-xs md:text-sm tracking-tight uppercase text-white mb-1">
-                    Bishop Olaitan O. Emmanuel - General Overseer
+                    Bishop Olaitan O. Emmanuel
                   </h4>
                   <p className="font-sans text-[11px] text-slate-300 leading-relaxed italic">
                     "We welcome you to physical and digital atmospheres of radical worship, deep uncompromised teaching, and perfect covenant community."
@@ -843,7 +843,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                       <span className="text-xs font-bold text-[#0a0a0a] tracking-tight uppercase block leading-snug">
                         Zion Loveworld Gospel Ministry International
                       </span>
-                      <button
+                      {/* <button
                         onClick={() => {
                           navigator.clipboard.writeText("Zion Loveworld Gospel Ministry International");
                           alert("Account name copied to clipboard!");
@@ -851,7 +851,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                         className="absolute right-4 top-1/2 -translate-y-1/2 text-[9px] uppercase font-bold text-[#E61A22] hover:underline cursor-pointer active:scale-105 transition-transform duration-100 ease-out"
                       >
                         Copy Name
-                      </button>
+                      </button> */}
                     </div>
 
                     {/* Account Number */}
@@ -867,7 +867,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                           navigator.clipboard.writeText("1013405642");
                           alert("Account number 1013405642 copied to clipboard!");
                         }}
-                        className="text-[9px] uppercase font-bold text-[#E61A22] hover:underline cursor-pointer bg-[#94060b]/5 px-3 py-1.5 rounded-lg border border-[#94060b]/10 hover:bg-[#94060b]/10 active:scale-105 transition-all duration-100 ease-out"
+                        className="text-[7px] uppercase font-bold text-[#E61A22] hover:underline cursor-pointer bg-[#94060b]/5 px-3 py-1.5 rounded-lg border border-[#94060b]/10 hover:bg-[#94060b]/10 active:scale-105 transition-all duration-100 ease-out"
                       >
                         Copy Account Number
                       </button>

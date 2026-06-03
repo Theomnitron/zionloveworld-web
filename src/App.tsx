@@ -65,10 +65,10 @@ export default function App() {
     setSubmitError(null);
 
     // Hardcoded credentials for instant client-side preview execution
-    const sheetsWebhookUrl = "https://api.sheetbest.com/sheets/a4efc035-6d4f-4121-8458-854534da9e52";
-    const emailjsServiceId = "service_z8973h1";
-    const emailjsTemplateId = "template_e0vn9oo";
-    const emailjsPublicKey = "7JnLCzVOg_JuHyZlt";
+    const sheetsWebhookUrl = import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK_URL as string;
+    const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+    const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+    const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
 
     // Format clean payloads
     const serialNumber = new Date().getTime().toString();

@@ -18,14 +18,13 @@ export const CHURCH_INFO: ChurchInfo = {
   vision: "To broadcast the unfathomable love and redemption of Jesus Christ, building a global sanctuary of active disciples equipped with unwavering faith and grounded in active service.",
   mission: "Equipping lives through dynamic Word teaching, pure prophetic worship, global community outreach, and systematic discipleship, elevating a generation of leaders to dominate in every sphere.",
   pastorName: "Pastor Ezekiel & Pastor Grace Adeleke",
-  phone: "+1 (800) 555-ZION",
-  email: "connect@zionloveworld.org",
-  address: "Zion Loveworld Cathedral, 1200 Sanctuary Parkway, Suite 500, Alpharetta, GA 30009",
+  phone: "+234 (0) 8118886806",
+  email: "info@zionloveworld.org",
+  address: "Zion Loveworld Cathedral, Dutse Makaranta, FCT Abuja, Nigeria",
   serviceTimes: [
-    { day: "Sunday", time: "09:00 AM - 10:30 AM", type: "First Word Service" },
-    { day: "Sunday", time: "11:00 AM - 01:00 PM", type: "Prophetic Worship Service" },
-    { day: "Wednesday", time: "06:30 PM - 08:00 PM", type: "Midweek Spiritual Growth & Bible Study" },
-    { day: "Friday", time: "11:00 PM - 02:00 AM", type: "Vigil / Prophetic Breakthrough Prayer" }
+    { day: "Sunday", time: "09:00 AM - 10:30 AM", type: "Sunday Celebration Service" },
+    { day: "Monday", time: "06:30 PM - 08:00 PM", type: "Midweek Spiritual Growth & Bible Study" },
+    { day: "Tuesday", time: "11:00 PM - 02:00 AM", type: "Vigil / Prophetic Breakthrough Prayer" }
   ]
 };
 
