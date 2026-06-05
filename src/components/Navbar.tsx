@@ -90,7 +90,7 @@ export default function Navbar({ currentView, onNavigate, onPlanVisit }: NavbarP
                 <span className="font-sans font-bold text-xs uppercase tracking-widest text-[#2D3748]">
                   Zion Loveworld
                 </span>
-                <span className="text-[9px] font-sans font-bold tracking-tight uppercase text-[#94060b] mt-0.5">
+                <span className="text-[9px] font-sans font-bold tracking-tight uppercase text-[#94060b]"> {/* Mature Red HERE! */}
                   Gospel Ministry Intl
                 </span>
               </div>

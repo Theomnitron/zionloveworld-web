@@ -1,6 +1,6 @@
 {
   "name": "Zion Loveworld Gospel Ministry International",
-  "description": "The official digital portal for Zion Loveworld Gospel Ministry International, providing sermon logs, fellowship gallery, covenant seed sown portal, and service times guides.",
+  "description": "The official digital website for Zion Loveworld Gospel Ministry International, providing sermon logs, fellowship gallery, covenant seed sown portal, and service times guides.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

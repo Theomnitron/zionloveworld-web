@@ -13,9 +13,9 @@ export interface ThemeData {
 }
 
 export const currentThemeData: ThemeData = {
-  imageUrl: "https://images.unsplash.com/photo-1544427928-142ec227831e?q=80&w=800",
-  themeTitle: "THE YEAR OF HOLINESS AND DIVINE ESTABLISHMENT",
-  scriptureReference: "But as He which hath called you is holy, so be ye holy in all manner of conversation. — 1 Peter 1:15"
+  imageUrl: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/others/Prophetic%20Declaration%20for%202026.png",
+  themeTitle: "AS WE BEHOLD HIM, WE ARE CHANGED FROM GLORY TO GLORY",
+  scriptureReference: "But we all, with open face beholding as in a glass the glory of the Lord, are changed into the same image from glory to glory, even as by the Spirit of the Lord. — 2 Cor. 3:18"
 };
 
 /**
@@ -69,7 +69,7 @@ export const serviceSchedules: ServiceSchedule[] = [
     id: "sched-1",
     day: "Sunday",
     title: "Sunday Celebration Service",
-    description: "Apostolic Atmosphere & Prophetic Realignment",
+    description: "Fellowshipping in One Accord",
     time: "8:00 AM",
     badge: "Lord's Day"
   },
@@ -77,7 +77,7 @@ export const serviceSchedules: ServiceSchedule[] = [
     id: "sched-2",
     day: "Monday",
     title: "Monday Prayer Meeting",
-    description: "Breakthrough Declarations & Spiritual Warfare",
+    description: "Prayers of Supplication and Personal Life",
     time: "6:00 PM",
     badge: "Intercession"
   },
@@ -85,8 +85,8 @@ export const serviceSchedules: ServiceSchedule[] = [
     id: "sched-3",
     day: "Tuesday",
     title: "Tuesday Bible Study",
-    description: "Systematic Scriptural Exposition & Doctrine",
+    description: "Systematic Scriptural Exposition for Understanding",
     time: "6:00 PM",
-    badge: "Discipleship"
+    badge: "Word Study"
   }
 ];

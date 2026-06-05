@@ -24,9 +24,12 @@ import {
 } from 'lucide-react';
 import { SERMONS, Sermon } from '../data/sermons';
 import { supabase } from '../lib/supabase';
+import { ChurchView } from '../types/church';
+import Footer from '../components/Footer';
 
 interface SermonsProps {
   onSowSeedClick: () => void;
+  onNavigate?: (view: ChurchView, anchor?: string) => void;
 }
 
 // Reusable scroll reveal component with native Intersection Observer
@@ -79,7 +82,7 @@ function ScrollReveal({
   );
 }
 
-export default function Sermons({ onSowSeedClick }: SermonsProps) {
+export default function Sermons({ onSowSeedClick, onNavigate }: SermonsProps) {
   // Filtering states
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<string>('All');
@@ -327,7 +330,7 @@ export default function Sermons({ onSowSeedClick }: SermonsProps) {
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="py-16 bg-white flex-1 mb-28" id="sermons-view-container">
+    <div className="bg-white flex-1" id="sermons-view-container">
       
       {/* Dynamic bouncing equalizer keyframes styled directly */}
       <style>
@@ -469,7 +472,7 @@ export default function Sermons({ onSowSeedClick }: SermonsProps) {
                 <ScrollReveal key={sermon.id} delay={index * 100} className="h-full">
                   <div 
                     id={`sermon-card-${sermon.id}`}
-                    className="bg-white rounded-2xl border border-slate-100 shadow-xs p-7 flex flex-col justify-between hover:scale-110 active:scale-105 hover:border-[#94060b]/30 hover:shadow-xl transition-all duration-100 ease-out hover:z-10 group h-full cursor-pointer"
+                    className="bg-white rounded-2xl border border-slate-200 shadow-lg p-7 flex flex-col justify-between hover:scale-110 active:scale-105 hover:border-[#94060b]/30 hover:shadow-xl transition-all duration-100 ease-out hover:z-10 group h-full cursor-pointer"
                   >
                     
                     {/* RESTING STATE DISPLAY LAYOUT (Title, speaker, date, fileSize) */}
@@ -636,6 +639,10 @@ export default function Sermons({ onSowSeedClick }: SermonsProps) {
         )}
 
       </div>
+
+      <br /> <br />
+
+      <Footer onNavigate={onNavigate} />
 
       {/* 4. FLOATING INTERACTIVE GLASS AUDIO DEDICATED MEDIA PLAYER UTILITY BAR */}
       {playingSermon && (

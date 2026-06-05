@@ -16,6 +16,8 @@ import {
 } from 'lucide-react';
 import { GALLERY_ITEMS, GalleryItem } from '../data/gallery';
 import { supabase } from '../lib/supabase';
+import { ChurchView } from '../types/church';
+import Footer from '../components/Footer';
 
 // Reusable scroll reveal component with native Intersection Observer
 function ScrollReveal({ 
@@ -67,7 +69,11 @@ function ScrollReveal({
   );
 }
 
-export default function Gallery() {
+interface GalleryProps {
+  onNavigate?: (view: ChurchView, anchor?: string) => void;
+}
+
+export default function Gallery({ onNavigate }: GalleryProps) {
   const [activeCategory, setActiveCategory] = useState<string>('All Photos');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState<boolean>(false);
@@ -150,7 +156,7 @@ export default function Gallery() {
   };
 
   return (
-    <div className="py-16 bg-white flex-1 mb-12" id="gallery-view-container">
+    <div className=" bg-white flex-1" id="gallery-view-container">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Gallery Screen Header - Corporate Light Theme style */}
@@ -307,6 +313,10 @@ export default function Gallery() {
         )}
 
       </div>
+
+      <br />
+
+      <Footer onNavigate={onNavigate} />
 
       {/* 3. EDITORIAL LIGHTBOX MODAL CAROUSEL */}
       {activeLightboxItem && (

@@ -31,9 +31,10 @@ import {
 import { supabase } from '../lib/supabase';
 import { SERMONS } from '../data/sermons';
 import { GALLERY_ITEMS } from '../data/gallery';
+import Footer from '../components/Footer';
 
 interface HomeProps {
-  onNavigateToView: (view: 'sermons' | 'gallery') => void;
+  onNavigateToView: (view: 'sermons' | 'gallery', anchor?: string) => void;
   onPlanVisit: () => void;
 }
 
@@ -106,18 +107,18 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
   const defaultSlides: SlideData[] = [
     {
       bgImage: "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1280",
-      headline: "TRANSFORMING LIVES: THE WORD OF GOD AND THE BEAUTY OF HOLINESS.",
-      subtext: "Step into an atmosphere of dynamic word teaching, apostolic worship, and perfect covenant community."
+      headline: "THE WORD OF GOD IS QUICK AND POWERFUL!",
+      subtext: "Step into an atmosphere of dynamic word teaching and covenant community."
     },
     {
       bgImage: "https://images.unsplash.com/photo-1544427928-142ec227831e?q=80&w=1280",
-      headline: "A MANDATE OF HOLINESS AND FAITH.",
-      subtext: "Experience deep restoration and spiritual empowerment rooted firmly in truth."
+      headline: "TRUTH AND HOLINESS",
+      subtext: "Experience deep restoration and spiritual empowerment by The Word."
     },
     {
       bgImage: "https://images.unsplash.com/photo-1515162305285-0293e4767cc2?q=80&w=1280",
-      headline: "JOIN OUR COVENANT FELLOWSHIP.",
-      subtext: "Discover your purpose, ignite your faith, and worship with us globally or locally."
+      headline: "JOIN OUR FELLOWSHIP!",
+      subtext: "Ignite your faith and worship with us globally or locally."
     }
   ];
 
@@ -189,7 +190,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             const mapped = bannersData.map((b: any) => ({
               bgImage: b.image_url || "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1280",
               headline: b.title || "WELCOME EXPERIENCE",
-              subtext: "Step into an atmosphere of dynamic word teaching, apostolic worship, and perfect covenant community."
+              subtext: "Step into an atmosphere of dynamic word teaching and covenant community."
             }));
             setBanners(mapped);
             setUseBannersFallback(false);
@@ -543,13 +544,13 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             {/* Layout content inside the slide for synchronized fading */}
             <div className="absolute inset-0 flex items-center justify-center z-20">
               <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center">
-                <span className="font-sans font-bold text-[0.5rem] lg:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white px-4.5 py-1.5 rounded-full mb-4 block scale-105 select-none shadow-md">
+                <span className="font-sans font-bold text-[0.45rem] lg:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white px-3 py-1.5 rounded-full mb-4 block scale-105 select-none shadow-md">
                   Welcome to Zion Loveworld Gospel Ministry International
                 </span>
-                <h1 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-5xl tracking-tight uppercase leading-tight max-w-4xl mb-6 text-white drop-shadow-md">
+                <h1 className="font-sans font-extrabold text-[2.1rem] sm:text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-tight max-w-4xl mb-3 text-white drop-shadow-md">
                   {slide.headline}
                 </h1>
-                <p className="font-sans text-slate-100 text-xs md:text-sm max-w-2xl mb-8 leading-relaxed font-semibold drop-shadow-sm">
+                <p className="font-sans text-slate-100 text-xs md:text-sm max-w-2xl mb-12 leading-relaxed font-semibold drop-shadow-sm">
                   {slide.subtext}
                 </p>
                 
@@ -576,7 +577,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
         {/* Manual Slides Navigation Arrow controls */}
         {slides.length > 1 && (
           <>
-            <button
+            {/* <button
               onClick={handlePrevSlide}
               className="absolute left-6 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full border border-white/20 bg-black/10 hover:bg-black/30 text-white hover:scale-110 active:scale-105 transition-all duration-100 ease-out focus:outline-none cursor-pointer shadow-sm"
               aria-label="Previous slide"
@@ -589,7 +590,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
               aria-label="Next slide"
             >
               <ChevronRight className="w-5 h-5" />
-            </button>
+            </button> */}
           </>
         )}
 
@@ -642,13 +643,13 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             {/* Typography Content Column */}
             <ScrollReveal delay={150} className="flex flex-col justify-center">
               <span className="text-[#E61A22] font-sans font-extrabold text-xs uppercase tracking-[0.2em] mb-3 inline-block">
-                The Prophetic Declaration for the Year
+                Prophetic Declaration for the Year 2026
               </span>
-              <h2 className="font-sans font-extrabold text-2xl md:text-4xl tracking-tight uppercase leading-tight mb-5">
+              <h2 className="font-sans font-extrabold text-[1.5rem] md:text-4xl lg:text-[3rem] tracking-tight uppercase leading-tight mb-5">
                 {currentThemeData.themeTitle}
               </h2>
               <div className="h-1.5 w-20 bg-[#E61A22] mb-6 rounded-full" />
-              <p className="font-sans text-sm md:text-base text-slate-300 italic font-semibold leading-relaxed border-l-4 border-[#E61A22] pl-4">
+              <p className="font-sans text-sm md:text-base text-slate-400 italic font-semibold leading-relaxed border-l-4 border-[#E61A22] pl-4">
                 "{currentThemeData.scriptureReference}"
               </p>
             </ScrollReveal>
@@ -662,7 +663,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-[#E61A22] font-sans font-extrabold text-xs uppercase tracking-[0.2em] mb-2 block">
-              Holy Assemblies
+              Fellowship Schedule
             </span>
             <h2 className="font-sans font-extrabold text-2xl md:text-4xl text-[#0A0A0A] uppercase tracking-tight">
               Our Dynamic Weekly Encounters
@@ -725,7 +726,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
               
               <div className="space-y-5 text-[#2D3748] font-sans text-sm md:text-base leading-relaxed">
                 <p>
-                  Established under the divine mandate of apostolic grace, Zion Loveworld Gospel Ministry International has stood as a beacon of uncompromised truth for over two decades. Our history is a testament to the transformative power of God’s holy counsel, leading thousands into deep discipleship and spiritual stewardship worldwide.
+                  Established in August 2011, Zion Loveworld Gospel Ministry International has stood as a beacon of uncompromised truth. Our history is a testament to the transformative power of God’s Word, leading many into deeper understanding of God and spiritual growth.
                 </p>
                 <p>
                   Our mandate is anchored in scripture: to preach structural holiness, activate supernatural prayer breakthroughs, and cultivate a community of flawless covenant integrity. Under the directive of our leadership, we remain dedicated to equipping believers with relevant spiritual authority to reign in their careers, households, and spiritual destinies.
@@ -763,7 +764,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
               <div className="absolute inset-0 border border-[#E61A22] rounded-lg translate-x-3 translate-y-3 z-0 transition-transform duration-300 group-hover:translate-x-1.5 group-hover:translate-y-1.5" />
               <div className="relative z-10 bg-white p-2.5 border border-[#E61A22] rounded-lg shadow-xl">
                 <img
-                  src="https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/others/Who%20we%20are.png"
+                  src="https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/others/IMG-20260111-WA0040.jpg"
                   alt="Bishop Olaitan O. Emmanuel - General Overseer"
                   referrerPolicy="no-referrer"
                   className="w-full h-[450px] object-cover rounded-md"
@@ -777,7 +778,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                     Bishop Olaitan O. Emmanuel
                   </h4>
                   <p className="font-sans text-[11px] text-slate-300 leading-relaxed italic">
-                    "We welcome you to physical and digital atmospheres of radical worship, deep uncompromised teaching, and perfect covenant community."
+                    "You are welcome you to physical and digital atmospheres of radical worship, deep uncompromised teaching, and perfect covenant community."
                   </p>
                 </div>
               </div>
@@ -788,24 +789,89 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       </section>
 
 
-      {/* 5. GIVING SECTION: Streamlined Manual Transfer Suite */}
+      {/* 5. UPCOMING EVENTS SECTION (NEW SECTION) */}
+      <section id="upcoming-events" className="py-24 bg-black/70 border-b border-slate-200"> {/* New Read HERE! */}
+        <div className="max-w-7xl mx-auto px-6">
+          <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
+            <span className="font-sans font-extrabold text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white/80 px-4 py-1.5 rounded-full mb-4 inline-block">
+              Divine Appointed Times
+            </span>
+            <h2 className="font-sans font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
+              Upcoming Programmes
+            </h2>
+            <p className="font-sans text-slate-650 text-xs md:text-sm mt-3 leading-relaxed" style={{ color: "#ffffffbb" }}>
+              Mark your calendar and prepare your spirit for these high-voltage spiritual encounters designed to align your destiny with divine realities.
+            </p>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {(useEventsFallback ? upcomingEventsData : events).map((event, index) => (
+              <ScrollReveal key={event.id} elementId={event.id} delay={index * 200}>
+                <div 
+                  className="bg-white shadow-md border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-stretch h-full"
+                >
+                  {/* Banner wrapper graphic */}
+                  <div className="md:w-2/5 overflow-hidden relative">
+                    <img 
+                      src={event.bannerUrl} 
+                      alt={event.title} 
+                      className="w-full h-full min-h-[220px] object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-neutral-950/20" />
+                  </div>
+
+                  {/* Event text blocks */}
+                  <div className="p-6 md:w-3/5 flex flex-col justify-between">
+                    <div>
+                      <span className="text-[#E61A22] font-mono text-[9px] font-bold uppercase tracking-widest block mb-1">
+                        {event.date}
+                      </span>
+                      <h3 className="font-sans font-extrabold text-base md:text-lg text-[#0A0A0A] uppercase tracking-tight mb-2.5">
+                        {event.title}
+                      </h3>
+                      <p className="text-xs text-slate-500 leading-relaxed font-light mb-4">
+                        {event.description}
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-100 space-y-2">
+                      <div className="flex items-center gap-2 text-[11px] text-slate-600 font-medium">
+                        <Clock className="w-3.5 h-3.5 text-[#E61A22]" />
+                        <span>{event.time}</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-[11px] text-slate-600 font-medium">
+                        <MapPin className="w-3.5 h-3.5 text-[#E61A22] shrink-0 mt-0.5" />
+                        <span>{event.location}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* 6. GIVING SECTION: Streamlined Manual Transfer Suite */}
       <section 
         id="giving" 
         className="relative py-24 bg-cover bg-center overflow-hidden border-b border-slate-900"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1490557142725-ed8591afb8e1?q=80&w=1280')" }}
       >
-        <div className="absolute inset-0 bg-black/80 z-0" />
+        <div className="absolute inset-0 bg-gray-50 z-0" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-            <span className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white/10 px-4 py-1.5 rounded-full mb-4 inline-block">
-              Kingdom Stewardship & Partnership
+            <span className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-black/10 px-4 py-1.5 rounded-full mb-4 inline-block">
+              Kingdom Partnership
             </span>
-            <h2 className="font-sans font-extrabold text-3xl md:text-5xl text-white tracking-tight uppercase leading-tight">
+            <h2 className="font-sans font-extrabold text-3xl md:text-5xl text-[#0A0A0A] tracking-tight uppercase leading-tight">
               Sowing into the Vision
             </h2>
-            <p className="font-sans text-slate-350 text-xs md:text-sm mt-3 leading-relaxed" style={{ color: "#d9d9d9" }}>
-              Your seeds, tithes, and offerings directly support global media evangelism, neighborhood outreaches, cathedral structures, and active discipleship resources.
+            <p className="font-sans text-slate-350 text-xs md:text-sm mt-3 leading-relaxed" style={{ color: "#0a0a0abd" }}>
+              Your tithes, offeings, and kingdom investments directly support global media evangelism, neighborhood outreaches, auditorium structures, and active discipleship resources.
             </p>
           </ScrollReveal>
 
@@ -817,13 +883,13 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                 
                 <div>
                   <span className="text-[#E61A22] font-sans font-extrabold text-[10px] uppercase tracking-[0.2em] mb-2 block">
-                    Official Manual Direct Altar Transfer
+                    Official Account Details
                   </span>
                   <h3 className="font-sans font-extrabold text-xl text-[#0A0A0A] uppercase tracking-tight mb-5">
-                    Direct Core Offering
+                    Direct Core Givings
                   </h3>
                   <p className="font-sans text-xs text-slate-600 leading-relaxed font-light mb-6">
-                    For manual bank deposits, online wire transfers, or direct local accounts, please transfer your tithes, covenant offerings, or partnership seeds to our official corporate account detailed below.
+                    For manual bank deposits, online wire transfers, or direct local accounts, please utilize our official corporate account detailed below.
                   </p>
 
                   {/* Account Details Panel */}
@@ -876,9 +942,9 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-slate-100">
-                  <span className="text-[9px] font-sans font-semibold text-slate-500 block mb-2 uppercase tracking-wide">Scriptural Covenant Promise:</span>
+                  <span className="text-[9px] font-sans font-semibold text-slate-500 block mb-2 uppercase tracking-wide">Scriptural Principle:</span>
                   <p className="font-sans text-[11px] text-slate-500 italic leading-normal">
-                    "Give, and it will be given to you: good measure, pressed down, shaken together, and running over, will be put into your bosom..." — Luke 6:38
+                    "Every man according as he purposeth in his heart, so let him give; not grudgingly, or of necessity: for God loveth a cheerful giver." — 2 Cor 9:7
                   </p>
                 </div>
               </div>
@@ -888,235 +954,8 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       </section>
 
 
-      {/* 6. UPCOMING EVENTS SECTION (NEW SECTION) */}
-      <section id="upcoming-events" className="py-24 bg-gray-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[#E61A22] font-sans font-extrabold text-xs uppercase tracking-[0.2em] mb-2 block">
-              Divine Appointed Times
-            </span>
-            <h2 className="font-sans font-extrabold text-3xl md:text-4xl text-[#0A0A0A] uppercase tracking-tight">
-              Upcoming Altar Outreaches
-            </h2>
-            <p className="font-sans text-slate-650 text-xs md:text-sm mt-3 leading-relaxed">
-              Mark your calendar and prepare your spirit for these high-voltage spiritual encounters designed to align your destiny with divine realities.
-            </p>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {(useEventsFallback ? upcomingEventsData : events).map((event, index) => (
-              <ScrollReveal key={event.id} elementId={event.id} delay={index * 200}>
-                <div 
-                  className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-stretch h-full"
-                >
-                  {/* Banner wrapper graphic */}
-                  <div className="md:w-2/5 overflow-hidden relative">
-                    <img 
-                      src={event.bannerUrl} 
-                      alt={event.title} 
-                      className="w-full h-full min-h-[220px] object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-neutral-950/20" />
-                  </div>
-
-                  {/* Event text blocks */}
-                  <div className="p-6 md:w-3/5 flex flex-col justify-between">
-                    <div>
-                      <span className="text-[#E61A22] font-mono text-[9px] font-bold uppercase tracking-widest block mb-1">
-                        {event.date}
-                      </span>
-                      <h3 className="font-sans font-extrabold text-base md:text-lg text-[#0A0A0A] uppercase tracking-tight mb-2.5">
-                        {event.title}
-                      </h3>
-                      <p className="text-xs text-slate-500 leading-relaxed font-light mb-4">
-                        {event.description}
-                      </p>
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-100 space-y-2">
-                      <div className="flex items-center gap-2 text-[11px] text-slate-600 font-medium">
-                        <Clock className="w-3.5 h-3.5 text-[#E61A22]" />
-                        <span>{event.time}</span>
-                      </div>
-                      <div className="flex items-start gap-2 text-[11px] text-slate-600 font-medium">
-                        <MapPin className="w-3.5 h-3.5 text-[#E61A22] shrink-0 mt-0.5" />
-                        <span>{event.location}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
       {/* 7. THE CONSOLIDATED MATTE BLACK MASTER FOOTER */}
-      <footer id="contact-us" className="bg-[#0A0A0A] text-white pt-20 pb-8 border-t border-slate-950">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
-            
-            {/* LEFT COLUMN: BRANDING & CONTACTS */}
-            <div className="flex flex-col gap-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center">
-                  <img 
-                    src="https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/others/Zion%20Logo.png" 
-                    alt="Zion Logo" 
-                    className="w-full h-full object-contain rounded-full"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-sans font-bold text-xs uppercase tracking-widest text-white">
-                    Zion Loveworld
-                  </span>
-                  <span className="text-[9px] font-sans font-semibold tracking-tight uppercase text-[#E61A22]">
-                    Gospel Ministry Intl
-                  </span>
-                </div>
-              </div>
-              <p className="text-xs text-slate-400 leading-relaxed max-w-sm font-light">
-                Preaching structural holiness, activation of supernatural prayer breakthroughs, and cultivating a community of flawless covenant integrity worldwide.
-              </p>
-              
-              <div className="space-y-3.5 text-xs text-slate-400">
-                <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-[#E61A22] shrink-0 mt-0.5" style={{ color: "#ffffff" }} />
-                  <span>Dutse Makaranta, Abuja, Nigeria</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-[#E61A22] shrink-0" style={{ color: "#ffffff" }} />
-                  <span>{CHURCH_INFO.phone}</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <Mail className="w-4 h-4 text-[#E61A22] shrink-0" style={{ color: "#ffffff", borderColor: "#ffffff" }} />
-                  <span>{CHURCH_INFO.email}</span>
-                </div>
-              </div>
-
-              <button
-                onClick={handleCopyAddress}
-                className="mt-2 text-[9px] text-[#E61A22] font-semibold uppercase tracking-wider hover:underline flex items-center gap-1.5 focus:outline-none cursor-pointer w-fit"
-                style={{ color: "#ffffff" }}
-              >
-                {addressCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                {addressCopied ? 'Address Copied!' : 'Copy Altar Address'}
-              </button>
-            </div>
-
-            {/* MIDDLE COLUMN: QUICK HOT LINKS */}
-            <div className="flex flex-col gap-6 md:pl-6">
-              <h4 className="font-sans font-bold text-xs uppercase tracking-widest text-white border-b border-white/5 pb-2">
-                Quick Directory Links
-              </h4>
-              <div className="flex flex-col gap-3.5 text-xs text-slate-400 font-medium select-none">
-                <button 
-                  onClick={(e) => handleAnchorScroll(e, 'hero-carousel')} 
-                  className="text-left hover:text-white hover:underline transition-colors uppercase tracking-wider cursor-pointer active:scale-105 transition-transform duration-100 ease-out font-sans text-xs"
-                >
-                  Top of Page
-                </button>
-                <button 
-                  onClick={(e) => handleAnchorScroll(e, 'who-we-are')} 
-                  className="text-left hover:text-white hover:underline transition-colors uppercase tracking-wider cursor-pointer active:scale-105 transition-transform duration-100 ease-out font-sans text-xs"
-                >
-                  Our Manifesto
-                </button>
-                <button 
-                  onClick={(e) => handleAnchorScroll(e, 'theme-of-the-year')} 
-                  className="text-left hover:text-white hover:underline transition-colors uppercase tracking-wider cursor-pointer active:scale-105 transition-transform duration-100 ease-out font-sans text-xs"
-                >
-                  Prophetic Theme
-                </button>
-                <button 
-                  onClick={(e) => handleAnchorScroll(e, 'weekly-services')} 
-                  className="text-left hover:text-white hover:underline transition-colors uppercase tracking-wider cursor-pointer active:scale-105 transition-transform duration-100 ease-out font-sans text-xs"
-                >
-                  Covenant Assemblies
-                </button>
-                <button 
-                  onClick={() => onNavigateToView('sermons')} 
-                  className="text-left hover:text-white hover:underline transition-colors uppercase tracking-wider cursor-pointer active:scale-105 transition-transform duration-100 ease-out font-sans text-xs"
-                >
-                  Sermon Medias
-                </button>
-                <button 
-                  onClick={(e) => handleAnchorScroll(e, 'giving')} 
-                  className="text-left hover:text-[#E61A22] hover:underline transition-colors uppercase tracking-wider font-extrabold text-[#E61A22] cursor-pointer active:scale-105 transition-transform duration-100 ease-out font-sans text-xs"
-                >
-                  Sow Seed Altar
-                </button>
-              </div>
-            </div>
-
-            {/* RIGHT COLUMN: LOCAL SEO MAP CONTAINER */}
-            <div className="flex flex-col gap-4">
-              <h4 className="font-sans font-bold text-xs uppercase tracking-widest text-white border-b border-white/5 pb-2">
-                Altar Spatial Location Coordinates
-              </h4>
-              <div className="w-full h-64 bg-[#1A1A1A] border border-slate-800 rounded-xl overflow-hidden relative group">
-                <div className="absolute inset-0 bg-slate-950 opacity-40 mix-blend-overlay" />
-                <div className="absolute inset-0 flex flex-col justify-between p-4 z-10">
-                  <div className="bg-[#0A0A0A]/90 backdrop-blur-md p-3 rounded-lg border border-slate-800">
-                    <div className="flex items-center gap-1.5 mb-1 animate-pulse">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#E61A22]" />
-                      <span className="text-[8px] font-sans font-bold tracking-widest uppercase text-slate-300">
-                        Sanctuary Altar
-                      </span>
-                    </div>
-                    <h4 className="text-[10px] font-bold text-white uppercase tracking-tight font-sans">
-                      Zion Loveworld Ministry Intl
-                    </h4>
-                    <p className="text-[9px] text-slate-400 mt-0.5 leading-tight italic font-light">
-                      Dutse Makaranta, Abuja, Nigeria
-                    </p>
-                  </div>
-
-                  <a 
-                    href="https://www.google.com/maps/search/?api=1&query=Zion+Loveworld+Ministry+international+New+Jerusalem+dutse+Federal+Capital+Territory+Abuja"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#E61A22] hover:bg-[#b51017] text-white font-sans font-bold text-[9px] uppercase tracking-widest px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 self-start transition-transform hover:scale-105"
-                  >
-                    <MapPin className="w-3.5 h-3.5" />
-                    Open Google Maps
-                  </a>
-                </div>
-
-                {/* Stylized vector pattern coordinates representing radar streets */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
-                  <div className="w-48 h-48 border border-slate-800 rounded-full flex items-center justify-center">
-                    <div className="w-36 h-36 border border-dashed border-slate-700 rounded-full flex items-center justify-center">
-                      <div className="w-24 h-24 border border-slate-800 rounded-full" />
-                    </div>
-                  </div>
-                  <div className="absolute w-full h-px bg-slate-800 top-1/2" />
-                  <div className="absolute h-full w-px bg-slate-800 left-1/2" />
-                </div>
-
-                {/* Pin layout visual */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="relative flex flex-col items-center">
-                    <div className="w-8 h-8 rounded-full bg-[#E61A22]/20 flex items-center justify-center animate-ping absolute" />
-                    <div className="w-6 h-6 rounded-full bg-[#E61A22] flex items-center justify-center relative z-10 shadow-lg border-2 border-white">
-                      <MapPin className="w-3 h-3 text-white" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          {/* BASELINE: Copyright lines */}
-          <div className="pt-8 border-t border-white/5 text-center text-slate-550 font-sans text-[10px] uppercase font-bold tracking-widest leading-loose">
-            &copy; {new Date().getFullYear()} Zion Loveworld Gospel Ministry International. All Covenant Rights Reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer onNavigate={onNavigateToView} />
 
 
       {/* 8. ACTIVE STATE MODAL PLATFORM FOR "PLAN A VISIT" BOOKING UTILITY */}

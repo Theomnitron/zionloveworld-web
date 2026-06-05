@@ -43,7 +43,7 @@ export default function AppRouter({ currentView, anchorSection, onNavigate, onPl
     case 'home':
       return (
         <Home 
-          onNavigateToView={(view) => onNavigate(view)}
+          onNavigateToView={(view, anchor) => onNavigate(view, anchor)}
           onPlanVisit={onPlanVisit} 
         />
       );
@@ -52,18 +52,21 @@ export default function AppRouter({ currentView, anchorSection, onNavigate, onPl
       return (
         <Sermons 
           onSowSeedClick={() => onNavigate('home', 'giving')} 
+          onNavigate={onNavigate}
         />
       );
 
     case 'gallery':
       return (
-        <Gallery />
+        <Gallery
+        onNavigate={onNavigate}
+        />
       );
 
     default:
       return (
         <Home 
-          onNavigateToView={(view) => onNavigate(view)}
+          onNavigateToView={(view, anchor) => onNavigate(view, anchor)}
           onPlanVisit={onPlanVisit} 
         />
       );
