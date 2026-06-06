@@ -17,7 +17,7 @@ export const CHURCH_INFO: ChurchInfo = {
   name: "Zion Loveworld Gospel Ministry International",
   vision: "To broadcast the unfathomable love and redemption of Jesus Christ, building a global sanctuary of active disciples equipped with unwavering faith and grounded in active service.",
   mission: "Equipping lives through dynamic Word teaching, pure prophetic worship, global community outreach, and systematic discipleship, elevating a generation of leaders to dominate in every sphere.",
-  pastorName: "Pastor Ezekiel & Pastor Grace Adeleke",
+  pastorName: "Bishop Olaitan O. Emmanuel",
   phone: "+234 (0) 8118886806",
   email: "zionloveworld@gmail.com",
   address: "Zion Loveworld Cathedral, Dutse Makaranta, FCT Abuja, Nigeria",

@@ -248,7 +248,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       try {
         const { data: eventsData, error: eventsError } = await supabase
           .from('events')
-          .select('title, description, date, time, location, image_url, active')
+          .select('theme, description, date, time, location, image_url, active')
           .eq('active', true);
 
         if (eventsError) throw eventsError;
@@ -258,8 +258,8 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             const mappedEvents = eventsData.map((e: any, idx: number) => ({
               id: `db-event-${idx}`,
               bannerUrl: e.image_url || "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/others/Prophetic%20Declaration%20for%202026.png",
-              title: e.title,
-              date: e.date,
+              theme: e.theme,
+              date: formatSermonDate(e.date),
               description: e.description,
               time: e.time,
               location: e.location
@@ -780,7 +780,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                     General Overseer
                   </span>
                   <h4 className="font-sans font-bold text-[0.9rem] md:text-sm tracking-tight uppercase text-white mb-1">
-                    Bishop Olaitan O. Emmanuel
+                    {CHURCH_INFO.pastorName}
                   </h4>
                   <p className="font-sans text-[11px] text-slate-300 leading-relaxed italic">
                     "You are welcome you to this physical and digital atmosphere of deep uncompromised teachings of God's Word and Godly covenant community."
@@ -819,7 +819,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                   <div className="md:w-2/5 overflow-hidden relative">
                     <img 
                       src={event.bannerUrl} 
-                      alt={event.title} 
+                      alt={event.theme} 
                       className="w-full h-full min-h-[220px] object-cover"
                       referrerPolicy="no-referrer"
                     />
@@ -833,7 +833,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                         {event.date}
                       </span>
                       <h3 className="font-sans font-extrabold text-base md:text-lg text-[#0A0A0A] uppercase tracking-tight mb-2.5">
-                        {event.title}
+                        {event.theme}
                       </h3>
                       <p className="text-xs text-slate-500 leading-relaxed font-light mb-4">
                         {event.description}

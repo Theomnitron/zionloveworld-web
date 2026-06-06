@@ -275,7 +275,7 @@ export default function Sermons({ onSowSeedClick, onNavigate }: SermonsProps) {
       try {
         await navigator.share({
           title: sermon.title,
-          text: `Listen to this life-transforming sermon from Zion Loveworld: "${sermon.title}"`,
+          text: `Listen to this life-transforming sermon from Zion Loveworld by "${sermon.title}"`,
           url: shareUrl,
         });
       } catch (error) {
@@ -625,7 +625,7 @@ export default function Sermons({ onSowSeedClick, onNavigate }: SermonsProps) {
             <span className="inline-block bg-[#94060b]/10 text-[#E61A22] p-4 rounded-full mb-3">
               <BookOpen className="w-6 h-6" />
             </span>
-            <p className="text-slate-500 font-sans text-sm font-semibold">No sermons match your search.</p>
+            <p className="text-slate-500 font-sans text-sm font-semibold">No sermons match your filter.</p>
             <button
               onClick={() => {
                 setSearchTerm('');
