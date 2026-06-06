@@ -32,24 +32,24 @@ export interface UpcomingEvent {
 }
 
 export const upcomingEventsData: UpcomingEvent[] = [
-  {
-    id: "event-1",
-    title: "Apostolic Fire Conference 2026",
-    date: "July 12 - July 15, 2026",
-    time: "6:00 PM Daily",
-    location: "Zion Loveworld Cathedral, Dutse Makaranta, Abuja",
-    bannerUrl: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800",
-    description: "Releasing spiritual fire, apostolic keys, and ministerial authority for supernatural territorial dominance."
-  },
-  {
-    id: "event-2",
-    title: "Prophetic Worship & Breakthrough Night",
-    date: "August 28, 2026",
-    time: "9:00 PM Till Dawn (Vigil)",
-    location: "Zion Loveworld Cathedral, Dutse Makaranta, Abuja",
-    bannerUrl: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800",
-    description: "Worship at the feet of the King. Expect high-voltage prophetic utterances, miraculous healings, and life covenant breakthroughs."
-  }
+  // {
+  //   id: "event-1",
+  //   title: "Apostolic Fire Conference 2026",
+  //   date: "July 12 - July 15, 2026",
+  //   time: "6:00 PM Daily",
+  //   location: "Zion Loveworld Cathedral, Dutse Makaranta, Abuja",
+  //   bannerUrl: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800",
+  //   description: "Releasing spiritual fire, apostolic keys, and ministerial authority for supernatural territorial dominance."
+  // },
+  // {
+  //   id: "event-2",
+  //   title: "Prophetic Worship & Breakthrough Night",
+  //   date: "August 28, 2026",
+  //   time: "9:00 PM Till Dawn (Vigil)",
+  //   location: "Zion Loveworld Cathedral, Dutse Makaranta, Abuja",
+  //   bannerUrl: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800",
+  //   description: "Worship at the feet of the King. Expect high-voltage prophetic utterances, miraculous healings, and life covenant breakthroughs."
+  // }
 ];
 
 /**

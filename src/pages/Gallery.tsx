@@ -159,19 +159,19 @@ export default function Gallery({ onNavigate }: GalleryProps) {
     <div className=" bg-white flex-1" id="gallery-view-container">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Gallery Screen Header - Corporate Light Theme style */}
+        {/* Gallery Screen Header - Corporate Light Theme style */} <br />
         <ScrollReveal>
           <div id="gallery-header-section" className="border-b border-gray-100 pb-10 mb-12">
             <div className="flex items-center gap-2 mb-2">
               <span className="inline-block bg-[#94060b]/10 text-[#E61A22] font-sans font-bold text-xs uppercase tracking-[0.2em] px-3.5 py-1 rounded-md">
-                Apostolic visual archives
+                Photo Archives
               </span>
             </div>
             <h1 className="font-sans font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-[#0A0A0A] leading-tight">
-              Visual Testimony & Fellowship
+              Services, Ministries, & More
             </h1>
             <p className="font-sans text-sm md:text-base text-slate-600 mt-4 max-w-2xl leading-relaxed">
-              Witness the atmospheric outpouring, dynamic ordinations, and global breakthrough covenants captured live. Every photo displays real community spiritual empowerment in active fellowship.
+              Witness the heavenly outpourings, worship atmospheres, and breakthrough testimonies captured live. Every photo displays real community spiritual empowerment in active fellowship.
             </p>
           </div>
         </ScrollReveal>
@@ -183,7 +183,7 @@ export default function Gallery({ onNavigate }: GalleryProps) {
           <div className="hidden md:flex flex-wrap gap-3 items-center" id="gallery-category-tabs-container">
             <div className="flex items-center gap-2 bg-slate-100 px-4 py-2.5 rounded-xl text-[10px] text-slate-700 font-bold uppercase tracking-wider select-none shrink-0 border border-slate-200/50">
               <Layers className="w-3.5 h-3.5 text-[#E61A22]" />
-              <span>Fellowships:</span>
+              <span>Filters:</span>
             </div>
 
             {dynamicCategories.map((cat) => {
@@ -197,7 +197,7 @@ export default function Gallery({ onNavigate }: GalleryProps) {
                   }}
                   className={`px-5 py-2.5 rounded-xl font-sans font-bold text-[10px] uppercase tracking-wider hover:scale-105 active:scale-105 transition-transform duration-100 ease-out cursor-pointer ${
                     isActive 
-                      ? 'bg-[#E61A22] text-white shadow-lg shadow-[#E61A22]/20 font-extrabold' 
+                      ? 'bg-[#94060b] text-white shadow-lg shadow-[#E61A22]/20 font-extrabold' 
                       : 'bg-white border border-slate-200 hover:border-slate-300 text-slate-600 hover:text-slate-900'
                   }`}
                 >
@@ -214,7 +214,7 @@ export default function Gallery({ onNavigate }: GalleryProps) {
               className="w-full bg-white border border-gray-200 text-gray-800 rounded-xl px-4 py-3 flex items-center justify-between shadow-sm active:scale-[0.98] transition-transform duration-100 cursor-pointer focus:outline-none"
             >
               <span className="font-sans font-bold text-xs text-slate-800 flex items-center gap-2">
-                <span>🔍 Filter Archives:</span> 
+                <span>🔍 Filter Photos:</span> 
                 <span className="text-[#E61A22] font-extrabold">{activeCategory}</span>
               </span>
               <ChevronDown className={`w-4 h-4 text-[#E61A22] transition-transform duration-200 ${isFilterMenuOpen ? 'rotate-180' : 'rotate-0'}`} />

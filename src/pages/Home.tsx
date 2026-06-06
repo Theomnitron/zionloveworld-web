@@ -106,17 +106,17 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
 
   const defaultSlides: SlideData[] = [
     {
-      bgImage: "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1280",
+      bgImage: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/banners/Ground-lvl.jpg",
+      headline: "GROW IN UNDERSTANDING",
+      subtext: "Step into an atmosphere of dynamic Word teaching and covenant community."
+    },
+    {
+      bgImage: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/banners/banner%202.png",
       headline: "THE WORD OF GOD IS QUICK AND POWERFUL!",
-      subtext: "Step into an atmosphere of dynamic word teaching and covenant community."
+      subtext: "Experience deep restoration and spiritual empowerment by The Word of God."
     },
     {
-      bgImage: "https://images.unsplash.com/photo-1544427928-142ec227831e?q=80&w=1280",
-      headline: "TRUTH AND HOLINESS",
-      subtext: "Experience deep restoration and spiritual empowerment by The Word."
-    },
-    {
-      bgImage: "https://images.unsplash.com/photo-1515162305285-0293e4767cc2?q=80&w=1280",
+      bgImage: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/gallery/Children-group.jpg",
       headline: "JOIN OUR FELLOWSHIP!",
       subtext: "Ignite your faith and worship with us globally or locally."
     }
@@ -180,7 +180,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       try {
         const { data: bannersData, error: bannersError } = await supabase
           .from('banners')
-          .select('title, image_url, active')
+          .select('title, description, image_url, active')
           .eq('active', true);
 
         if (bannersError) throw bannersError;
@@ -188,9 +188,9 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
         if (active) {
           if (bannersData && bannersData.length > 0) {
             const mapped = bannersData.map((b: any) => ({
-              bgImage: b.image_url || "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1280",
-              headline: b.title || "WELCOME EXPERIENCE",
-              subtext: "Step into an atmosphere of dynamic word teaching and covenant community."
+              bgImage: b.image_url || "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/banners/Ground-lvl.jpg",
+              headline: b.title || "GROW IN UNDERSTANDING!",
+              subtext: b.description || "Step into an atmosphere of dynamic Word teaching and covenant community."
             }));
             setBanners(mapped);
             setUseBannersFallback(false);
@@ -213,7 +213,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
         const { data: sermonsData, error: sermonsError } = await supabase
           .from('sermons')
           .select('category, title, speaker, description, scriptures, duration, date, audio_url')
-          .order('created_at', { ascending: false });
+          .order('date', { ascending: false });
 
         if (sermonsError) throw sermonsError;
 
@@ -257,7 +257,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
           if (eventsData) {
             const mappedEvents = eventsData.map((e: any, idx: number) => ({
               id: `db-event-${idx}`,
-              bannerUrl: e.image_url || "https://images.unsplash.com/photo-1544427928-142ec227831e?q=80&w=1280",
+              bannerUrl: e.image_url || "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/others/Prophetic%20Declaration%20for%202026.png",
               title: e.title,
               date: e.date,
               description: e.description,
@@ -288,7 +288,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
           if (galleryData) {
             const mappedGallery = galleryData.map((g: any, idx: number) => ({
               id: `db-gallery-${idx}`,
-              imageUrl: g.image_url || "https://images.unsplash.com/photo-1515162305285-0293e4767cc2?q=80&w=800",
+              imageUrl: g.image_url, // || "https://images.unsplash.com/photo-1515162305285-0293e4767cc2?q=80&w=800",
               title: g.title,
               category: g.category,
               description: g.description
@@ -436,13 +436,15 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       // 1. Check if Google Sheets API rejected the row submission
       if (!sheetsResponse.ok) {
         const sheetsErrText = await sheetsResponse.text().catch(() => "");
-        throw new Error(`Google Sheets Error (${sheetsResponse.status}): ${sheetsErrText || "Check Sheet.best credentials"}`);
+        throw new Error(`Sorry: Please input a valid Email Address`); // Real Error below
+        // throw new Error(`Google Sheets Error (${sheetsResponse.status}): ${sheetsErrText || "Check Sheet.best credentials"}`);
       }
 
       // 2. Check if EmailJS API rejected the message structure
       if (!emailjsResponse.ok) {
         const emailErrText = await emailjsResponse.text().catch(() => "");
-        throw new Error(`EmailJS Mail Error (${emailjsResponse.status}): ${emailErrText || "Check template configurations"}`);
+        throw new Error(`Sorry: Please input a valid Email Address`); // Real Error below
+        // throw new Error(`EmailJS Mail Error (${emailjsResponse.status}): ${emailErrText || "Check template configurations"}`);
       }
 
       // 3. Record visual artifact for the JSON payload view block
@@ -502,14 +504,14 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       {/* SUCCESS TOAST NOTIFICATION BANNER */}
       {showSuccessToast && (
         <div id="visit-success-alert-banner" className="fixed top-24 left-1/2 -translate-x-1/2 z-[999] w-full max-w-md px-4 animate-fade-in-down">
-          <div className="bg-emerald-650 text-white p-4.5 rounded-2xl shadow-2xl flex items-start gap-3 border border-emerald-500 backdrop-blur-md">
+          <div className="bg-emerald-600 text-white p-4.5 rounded-2xl shadow-2xl flex items-start gap-3 border border-emerald-500 backdrop-blur-md">
             <CheckCircle className="w-5 h-5 text-emerald-100 shrink-0 mt-0.5" />
             <div className="flex-1">
               <h4 className="font-sans font-bold text-xs uppercase tracking-wider text-white">
                 Reservation Confirmed!
               </h4>
               <p className="font-sans text-[11px] text-emerald-50 mt-1 leading-relaxed">
-                Welcome Experience booked successfully. We cannot wait to host you in the Loveworld Sanctuary!
+                Welcome Experience booked successfully. We can't wait to host you!
               </p>
             </div>
             <button 
@@ -550,15 +552,15 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                 <h1 className="font-sans font-extrabold text-[2.1rem] sm:text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-tight max-w-4xl mb-3 text-white drop-shadow-md">
                   {slide.headline}
                 </h1>
-                <p className="font-sans text-slate-100 text-xs md:text-sm max-w-2xl mb-12 leading-relaxed font-semibold drop-shadow-sm">
+                <p className="font-sans text-slate-100 text-[0.65rem] md:text-sm max-w-2xl mb-12 leading-relaxed font-semibold drop-shadow-sm">
                   {slide.subtext}
                 </p>
                 
                 {/* 1. Side-by-Side Horizontal Buttons Force Row */}
                 <div className="flex flex-row gap-4 items-center justify-center">
                   <button
-                    onClick={() => setLocalVisitModalOpen(true)}
-                    className="bg-[#E61A22] hover:bg-[#b51017] text-white font-sans font-bold text-[10px] md:text-xs uppercase tracking-widest px-4 md:px-8 py-3.5 md:py-4 rounded-xl hover:scale-105 active:scale-105 transition-transform duration-100 ease-out shadow-lg shadow-[#E61A22]/30 cursor-pointer"
+                    onClick={onPlanVisit}
+                    className="bg-[#E61A22] hover:bg-[#730408] text-white font-sans font-bold text-[10px] md:text-xs uppercase tracking-widest px-4 md:px-8 py-3.5 md:py-4 rounded-xl hover:scale-105 active:scale-105 transition-transform duration-100 ease-out shadow-lg shadow-[#E61A22]/30 cursor-pointer"
                   >
                     Plan A Visit Today
                   </button>
@@ -670,6 +672,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             </h2>
           </ScrollReveal>
           
+          {/* Weekly Services Card*/}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {serviceSchedules.map((schedule, index) => (
               <ScrollReveal key={schedule.id} elementId={schedule.id} delay={index * 150}>
@@ -726,10 +729,12 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
               
               <div className="space-y-5 text-[#2D3748] font-sans text-sm md:text-base leading-relaxed">
                 <p>
-                  Established in August 2011, Zion Loveworld Gospel Ministry International has stood as a beacon of uncompromised truth. Our history is a testament to the transformative power of God’s Word, leading many into deeper understanding of God and spiritual growth.
+                  Established in August 2011, Zion Loveworld Gospel Ministry International has stood as a beacon of uncompromised truth.
+                  Our history is a testament to the transformative power of God’s Word, leading many into deeper understanding of God and spiritual growth.
                 </p>
                 <p>
-                  Our mandate is anchored in scripture: to preach structural holiness, activate supernatural prayer breakthroughs, and cultivate a community of flawless covenant integrity. Under the directive of our leadership, we remain dedicated to equipping believers with relevant spiritual authority to reign in their careers, households, and spiritual destinies.
+                  Our mandate is anchored in scripture: to preach the true Word of God, Holiness, and to activate supernatural liberations — Luke 4:18, Obadiah 1:17.
+                  Under the directive of our leadership, we remain dedicated to bringing believers into the understanding of God's Word for their eternal security, spiritual destinies, and human endeavours.
                 </p>
               </div>
 
@@ -741,7 +746,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                   </div>
                   <div>
                     <h5 className="font-sans font-bold text-xs text-slate-950 uppercase tracking-wider mb-0.5">Holy Scriptures</h5>
-                    <p className="text-xs text-slate-500">Uncompromising scripture exposition and daily truth</p>
+                    <p className="text-xs text-slate-500">Uncompromised scripture exposition and daily truth</p>
                   </div>
                 </div>
 
@@ -771,14 +776,14 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                 />
                 
                 <div className="bg-[#0A0A0A] text-white p-5 mt-2.5 rounded-md">
-                  <span className="font-sans font-bold text-[10px] uppercase tracking-[0.2em] text-[#E61A22] mb-1.5 block">
+                  <span className="font-sans font-bold text-[0.65rem] uppercase tracking-[0.2em] text-[#E61A22] mb-1.5 block">
                     General Overseer
                   </span>
-                  <h4 className="font-sans font-bold text-xs md:text-sm tracking-tight uppercase text-white mb-1">
+                  <h4 className="font-sans font-bold text-[0.9rem] md:text-sm tracking-tight uppercase text-white mb-1">
                     Bishop Olaitan O. Emmanuel
                   </h4>
                   <p className="font-sans text-[11px] text-slate-300 leading-relaxed italic">
-                    "You are welcome you to physical and digital atmospheres of radical worship, deep uncompromised teaching, and perfect covenant community."
+                    "You are welcome you to this physical and digital atmosphere of deep uncompromised teachings of God's Word and Godly covenant community."
                   </p>
                 </div>
               </div>
@@ -790,17 +795,17 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
 
 
       {/* 5. UPCOMING EVENTS SECTION (NEW SECTION) */}
-      <section id="upcoming-events" className="py-24 bg-black/70 border-b border-slate-200"> {/* New Read HERE! */}
+      <section id="upcoming-events" className="py-24 bg-slate-900 border-b border-slate-200"> {/* New Read HERE! */}
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-            <span className="font-sans font-extrabold text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white/80 px-4 py-1.5 rounded-full mb-4 inline-block">
+            <span className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white/80 px-4 py-1.5 rounded-full mb-4 inline-block">
               Divine Appointed Times
             </span>
             <h2 className="font-sans font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
               Upcoming Programmes
             </h2>
             <p className="font-sans text-slate-650 text-xs md:text-sm mt-3 leading-relaxed" style={{ color: "#ffffffbb" }}>
-              Mark your calendar and prepare your spirit for these high-voltage spiritual encounters designed to align your destiny with divine realities.
+              Our special programmes schedule will be listed here in advance. Mark your calendar and prepare your spirit for these high-voltage spiritual encounters designed to align your destiny with divine realities.
             </p>
           </ScrollReveal>
 
@@ -808,7 +813,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             {(useEventsFallback ? upcomingEventsData : events).map((event, index) => (
               <ScrollReveal key={event.id} elementId={event.id} delay={index * 200}>
                 <div 
-                  className="bg-white shadow-md border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-stretch h-full"
+                  className="bg-white shadow-md shadow-xl border border-slate-400 rounded-2xl overflow-hidden hover:scale-110 active:scale-105 hover:shadow-xl transition-transform duration-100 ease-out transition-shadow duration-300 flex flex-col md:flex-row items-stretch h-full"
                 >
                   {/* Banner wrapper graphic */}
                   <div className="md:w-2/5 overflow-hidden relative">
@@ -824,7 +829,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                   {/* Event text blocks */}
                   <div className="p-6 md:w-3/5 flex flex-col justify-between">
                     <div>
-                      <span className="text-[#E61A22] font-mono text-[9px] font-bold uppercase tracking-widest block mb-1">
+                      <span className="text-[#E61A22] font-mono text-[0.6rem] lg:text-[0.7rem] font-extrabold uppercase tracking-widest block mb-1">
                         {event.date}
                       </span>
                       <h3 className="font-sans font-extrabold text-base md:text-lg text-[#0A0A0A] uppercase tracking-tight mb-2.5">
@@ -889,7 +894,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                     Direct Core Givings
                   </h3>
                   <p className="font-sans text-xs text-slate-600 leading-relaxed font-light mb-6">
-                    For manual bank deposits, online wire transfers, or direct local accounts, please utilize our official corporate account detailed below.
+                    For manual bank deposits, online wire transfers, or direct local accounts, please take advantage our official corporate account details below:
                   </p>
 
                   {/* Account Details Panel */}
@@ -986,7 +991,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                     Plan Your Visitation
                   </h3>
                   <p className="text-xs text-slate-500 mt-1 font-light leading-relaxed">
-                    Welcome to the Loveworld assemblies. Please define your contact metrics for hosting reservation.
+                    Welcome! We're pleased to receive you. <br />Please define your contact details below.
                   </p>
                 </div>
 
@@ -1000,7 +1005,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
 
                 {/* Form fields */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-sans font-bold text-[9px] uppercase tracking-wider text-slate-500">Your Full Name</label>
+                  <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Your Full Name</label>
                   <input
                     type="text"
                     required
@@ -1014,11 +1019,11 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-sans font-bold text-[9px] uppercase tracking-wider text-slate-500">Email Address</label>
+                    <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Email Address</label>
                     <input
                       type="email"
                       required
-                      placeholder="gabriel@example.com"
+                      placeholder="gabrielmichael@gmail.com"
                       value={visitEmail}
                       onChange={(e) => setVisitEmail(e.target.value)}
                       className="w-full border border-slate-200 bg-white px-4 py-2.5 rounded-xl text-xs font-semibold outline-none focus:border-[#E61A22]"
@@ -1026,7 +1031,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-sans font-bold text-[9px] uppercase tracking-wider text-slate-500">Phone (for SMS alert)</label>
+                    <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Phone (for SMS alert)</label>
                     <input
                       type="tel"
                       placeholder="+234 (0) 803 123 4567"
@@ -1039,7 +1044,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-sans font-bold text-[9px] uppercase tracking-wider text-slate-500">Preferred Encounter Service</label>
+                  <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Preferred Encounter Service</label>
                   <select
                     value={visitService}
                     onChange={(e) => setVisitService(e.target.value)}
@@ -1053,7 +1058,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-sans font-bold text-[9px] uppercase tracking-wider text-slate-500">Proposed Visitation Date</label>
+                  <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Proposed Visitation Date</label>
                   <input
                     type="date"
                     required
@@ -1068,10 +1073,10 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full mt-2 font-sans font-bold text-[10px] uppercase tracking-widest py-3.5 rounded-xl transition-all shadow-md shadow-[#E61A22]/10 cursor-pointer text-center relative flex items-center justify-center gap-2 ${
+                  className={`w-full mt-2 font-sans font-bold text-[0.65rem] uppercase tracking-widest py-3.5 rounded-xl transition-all shadow-md shadow-[#E61A22]/10 cursor-pointer text-center relative flex items-center justify-center gap-2 ${
                     isSubmitting 
                       ? 'bg-slate-400 text-white cursor-not-allowed opacity-80 scale-[0.98]' 
-                      : 'bg-[#E61A22] hover:bg-[#b51017] text-white hover:scale-105 active:scale-105 transition-transform duration-100 ease-out'
+                      : 'bg-[#E61A22] hover:bg-[#730408] text-white hover:scale-105 active:scale-105 transition-transform duration-100 ease-out'
                   }`}
                 >
                   {isSubmitting ? (
@@ -1089,23 +1094,23 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
               </form>
             ) : (
               <div className="text-center py-4 flex flex-col items-center">
-                <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mb-4 shadow-sm animate-bounce">
+                <div className="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mb-4 shadow-sm animate-bounce">
                   <CheckCircle className="w-6 h-6" />
                 </div>
                 <h3 className="font-sans font-bold text-base uppercase tracking-wider text-slate-900 mb-1">
-                  Visitation Booked!
+                  Reservation Booked!
                 </h3>
                 <p className="text-[10px] text-[#E61A22] font-bold uppercase tracking-[0.15em] mb-4">
-                  Welcome to the Loveworld Sanctuary!
+                  We're pleased to have you're coming!
                 </p>
                 
                 <p className="font-sans text-xs text-slate-500 leading-relaxed max-w-sm mb-6 font-light">
-                  Thank you, <strong>{visitName}</strong>. Our guest integration captains have registered your visitation for <strong>{visitDate}</strong> to join the <strong>{visitService}</strong>. A confirmation guide payload holds:
+                  Thank you, <strong>{visitName}</strong>. Our HOSPITALITY TEAM have registered your visitation for <strong>{visitDate}</strong> to join the <strong>{visitService}</strong>. <br />A guide is transmitted to <strong>{visitEmail}</strong>.
                 </p>
 
                 <button
                   onClick={closeLocalVisitModal}
-                  className="w-full bg-[#E61A22] hover:bg-[#b51017] text-white font-sans font-bold text-[10px] uppercase tracking-widest py-3 rounded-xl hover:scale-105 active:scale-105 transition-all duration-100 ease-out cursor-pointer"
+                  className="w-full bg-[#E61A22] hover:bg-[#730408] text-white font-sans font-bold text-[0.5rem] uppercase tracking-widest py-3 rounded-xl hover:scale-105 active:scale-105 transition-all duration-100 ease-out cursor-pointer"
                 >
                   Conclude Reservation
                 </button>

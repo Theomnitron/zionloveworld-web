@@ -147,7 +147,7 @@ export default function Sermons({ onSowSeedClick, onNavigate }: SermonsProps) {
         const { data, error } = await supabase
           .from('sermons')
           .select('id, category, title, speaker, description, scriptures, duration, date, audio_url')
-          .order('created_at', { ascending: false });
+          .order('date', { ascending: false });
 
         if (error) throw error;
 
@@ -307,10 +307,10 @@ export default function Sermons({ onSowSeedClick, onNavigate }: SermonsProps) {
   const filteredSermons = useMemo(() => {
     return dbSermons.filter((sermon) => {
       const matchesSearch = 
-        sermon.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        sermon.speaker.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        sermon.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (sermon.scriptures && sermon.scriptures.some((scr: string) => scr.toLowerCase().includes(searchTerm.toLowerCase())));
+        (sermon.title || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (sermon.speaker || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (sermon.description || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+        ((sermon.scriptures || "") && (sermon.scriptures || "").some((scr: string) => scr.toLowerCase().includes(searchTerm.toLowerCase())));
 
       const matchesCategory = categoryFilter === 'All' || sermon.category === categoryFilter;
 
@@ -364,19 +364,19 @@ export default function Sermons({ onSowSeedClick, onNavigate }: SermonsProps) {
 
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Core Header section matching Corporate layout */}
+        {/* Core Header section matching Corporate layout */} <br />
         <ScrollReveal>
           <div id="sermons-header-section" className="border-b border-gray-100 pb-10 mb-12">
             <div className="flex items-center gap-2 mb-2">
               <span className="inline-block bg-[#94060b]/10 text-[#E61A22] font-sans font-bold text-xs uppercase tracking-[0.2em] px-3.5 py-1 rounded-md">
-                Apostolic Audio Archive
+                Audio Archives
               </span>
             </div>
             <h1 className="font-sans font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-[#0A0A0A] leading-tight">
-              Sermons & Sacred Teachings
+              Sermons & Teachings
             </h1>
             <p className="font-sans text-sm md:text-base text-slate-600 mt-4 max-w-2xl leading-relaxed">
-              Unpack life-transforming revelations, divine breakthrough declarations, and systematic spiritual development. Listen to complete sessions direct from the Zion Loveworld pulpit.
+              Unpack relatable exposotions, life-transforming revelations, and divine breakthrough declarations for your systematic spiritual development. Listen to complete sessions direct from Zion Loveworld's pulpit.
             </p>
           </div>
         </ScrollReveal>
@@ -393,7 +393,7 @@ export default function Sermons({ onSowSeedClick, onNavigate }: SermonsProps) {
                   onClick={() => setCategoryFilter(cat)}
                   className={`px-5 py-2.5 rounded-lg font-sans font-bold text-[10px] uppercase tracking-wider transition-transform hover:scale-105 active:scale-105 duration-100 ease-out cursor-pointer ${
                     categoryFilter === cat 
-                      ? 'bg-[#94060b] text-white shadow-lg shadow-[#94060b]/20 font-extrabold' 
+                      ? 'bg-[#94060b] text-white shadow-xs shadow-[#94060b]/20 font-extrabold' 
                       : 'bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-950 border border-transparent'
                   }`}
                 >
@@ -625,7 +625,7 @@ export default function Sermons({ onSowSeedClick, onNavigate }: SermonsProps) {
             <span className="inline-block bg-[#94060b]/10 text-[#E61A22] p-4 rounded-full mb-3">
               <BookOpen className="w-6 h-6" />
             </span>
-            <p className="text-slate-500 font-sans text-sm font-semibold">No sermons match your filter configurations.</p>
+            <p className="text-slate-500 font-sans text-sm font-semibold">No sermons match your search.</p>
             <button
               onClick={() => {
                 setSearchTerm('');

@@ -90,7 +90,7 @@ export default function Navbar({ currentView, onNavigate, onPlanVisit }: NavbarP
                 <span className="font-sans font-bold text-xs uppercase tracking-widest text-[#2D3748]">
                   Zion Loveworld
                 </span>
-                <span className="text-[9px] font-sans font-bold tracking-tight uppercase text-[#94060b]"> {/* Mature Red HERE! */}
+                <span className="text-[9px] font-sans font-bold tracking-tight uppercase text-[#E61A22]"> {/* Mature Red HERE! */}
                   Gospel Ministry Intl
                 </span>
               </div>
@@ -126,7 +126,7 @@ export default function Navbar({ currentView, onNavigate, onPlanVisit }: NavbarP
               <button
                 id="btn-plan-visit"
                 onClick={onPlanVisit}
-                className="bg-[#94060b] hover:bg-[#730408] text-white font-sans font-extrabold text-[11px] uppercase tracking-widest px-6 py-3.5 rounded-full hover:scale-110 transition-transform duration-200 shadow-md shadow-[#94060b]/15 cursor-pointer"
+                className="bg-[#E61A22] hover:bg-[#730408] text-white font-sans font-extrabold text-[11px] uppercase tracking-widest px-6 py-3.5 rounded-full hover:scale-110 transition-transform duration-200 shadow-md shadow-[#94060b]/15 cursor-pointer"
               >
                 Plan A Visit
               </button>
@@ -186,7 +186,7 @@ export default function Navbar({ currentView, onNavigate, onPlanVisit }: NavbarP
             {/* Header section of drawer */}
             <div className="flex items-center justify-between pb-6 border-b border-gray-100">
               <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center">
                   <img 
                     src="https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/others/Zion%20Logo.png" 
                     alt="Zion Logo" 
@@ -194,8 +194,11 @@ export default function Navbar({ currentView, onNavigate, onPlanVisit }: NavbarP
                     referrerPolicy="no-referrer"
                   />
                 </div>
-                <span className="font-sans font-bold text-[10px] uppercase tracking-widest text-[#2D3748]">
-                  Zion Loveworld
+                <span className="font-sans font-bold text-[0.7rem] uppercase tracking-widest text-[#2D3748]">
+                  Zion Loveworld <br />
+                  <span className="text-[0.6rem] font-sans font-bold tracking-tight uppercase text-[#E61A22]"> {/* Mature Red HERE! */}
+                    Gospel Ministry Intl
+                  </span>
                 </span>
               </div>
               <button
@@ -239,7 +242,7 @@ export default function Navbar({ currentView, onNavigate, onPlanVisit }: NavbarP
                 onPlanVisit();
                 setMobileMenuOpen(false);
               }}
-              className="w-full bg-[#94060b] hover:bg-[#730408] text-white text-center font-sans font-extrabold text-xs uppercase tracking-widest py-4 rounded-full hover:scale-105 active:scale-95 transition-all duration-200 shadow-md shadow-[#94060b]/15 cursor-pointer"
+              className="w-full bg-[#E61A22] hover:bg-[#730408] text-white text-center font-sans font-extrabold text-xs uppercase tracking-widest py-4 rounded-full hover:scale-105 active:scale-95 transition-all duration-200 shadow-md shadow-[#94060b]/15 cursor-pointer"
             >
               Plan A Visit
             </button>

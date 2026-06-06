@@ -142,13 +142,15 @@ export default function App() {
       // 1. Check if Google Sheets API rejected the row submission
       if (!sheetsResponse.ok) {
         const sheetsErrText = await sheetsResponse.text().catch(() => "");
-        throw new Error(`Google Sheets Error (${sheetsResponse.status}): ${sheetsErrText || "Check Sheet.best credentials"}`);
+        throw new Error(`Sorry: Please input a valid Email Address`); // Real Error below
+        // throw new Error(`Google Sheets Error (${sheetsResponse.status}): ${sheetsErrText || "Check Sheet.best credentials"}`);
       }
 
       // 2. Check if EmailJS API rejected the message structure
       if (!emailjsResponse.ok) {
         const emailErrText = await emailjsResponse.text().catch(() => "");
-        throw new Error(`EmailJS Mail Error (${emailjsResponse.status}): ${emailErrText || "Check template configurations"}`);
+        throw new Error(`Sorry: Please input a valid Email Address`); // Real Error below
+        // throw new Error(`EmailJS Mail Error (${emailjsResponse.status}): ${emailErrText || "Check template configurations"}`);
       }
 
       // 3. Set completion flag true to transition the modal inner layout to the Success screen
@@ -194,7 +196,7 @@ export default function App() {
                 Reservation Confirmed!
               </h4>
               <p className="font-sans text-[11px] text-emerald-50 mt-1 leading-relaxed">
-                Welcome Experience booked successfully. We cannot wait to host you in the Loveworld Sanctuary!
+                Welcome Experience booked successfully. We can't wait to host you!
               </p>
             </div>
             <button 
@@ -245,15 +247,15 @@ export default function App() {
               <form onSubmit={handleVisitSubmit} className="flex flex-col gap-6 relative z-10" id="visit-booking-form">
                 
                 {/* Header title */}
-                <div className="text-center pb-4 border-b border-gray-100">
-                  <div className="w-12 h-12 rounded-full bg-[#94060b]/10 flex items-center justify-center text-[#94060b] mx-auto mb-3">
+                <div className="text-center pb-4 border-b border-slate-100">
+                  <div className="w-12 h-12 rounded-full bg-[#E61A22]/10 flex items-center justify-center text-[#E61A22] mx-auto mb-3">
                     <Calendar className="w-6 h-6" />
                   </div>
-                  <h3 className="font-sans font-extrabold text-lg uppercase tracking-tight text-[#2D3748]">
+                  <h3 className="font-sans font-extrabold text-lg uppercase tracking-tight text-slate-900">
                     Plan Your Visitation
                   </h3>
-                  <p className="text-xs text-gray-500 mt-1">
-                    Receive host escorting, a welcome package, and reserved sanctuary slots.
+                  <p className="text-xs text-slate-500 mt-1 font-light leading-relaxed">
+                    Welcome! We're pleased to receive you. <br />Please define your contact details below.
                   </p>
                 </div>
 
@@ -267,67 +269,66 @@ export default function App() {
 
                 {/* Form fields */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-sans font-bold text-[10px] uppercase tracking-wider text-gray-500">Your Full Name</label>
+                  <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Your Full Name</label>
                   <input
                     type="text"
                     required
                     placeholder="E.g. Gabriel Michael"
                     value={visitName}
                     onChange={(e) => setVisitName(e.target.value)}
-                    className="w-full border border-gray-200 bg-white px-4 py-3 rounded-xl text-xs font-semibold outline-none focus:border-[#94060b]"
+                    className="w-full border border-slate-200 bg-white px-4 py-3 rounded-xl text-xs font-semibold outline-none focus:border-[#E61A22] text-slate-900"
                     disabled={isSubmitting}
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-sans font-bold text-[10px] uppercase tracking-wider text-gray-500">Email Address</label>
+                    <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Email Address</label>
                     <input
                       type="email"
                       required
-                      placeholder="gabriel@example.com"
+                      placeholder="gabrielmichael@gmail.com"
                       value={visitEmail}
                       onChange={(e) => setVisitEmail(e.target.value)}
-                      className="w-full border border-gray-200 bg-white px-4 py-2.5 rounded-xl text-xs font-semibold outline-none focus:border-[#94060b]"
+                      className="w-full border border-slate-200 bg-white px-4 py-2.5 rounded-xl text-xs font-semibold outline-none focus:border-[#E61A22] text-slate-900"
                       disabled={isSubmitting}
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-sans font-bold text-[10px] uppercase tracking-wider text-gray-500">Phone (for SMS alert)</label>
+                    <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Phone (for SMS alert)</label>
                     <input
                       type="tel"
-                      placeholder="+1 (555) 777-1111"
+                      placeholder="+234 (0) 803 123 4567"
                       value={visitPhone}
                       onChange={(e) => setVisitPhone(e.target.value)}
-                      className="w-full border border-gray-200 bg-white px-4 py-2.5 rounded-xl text-xs font-semibold outline-none focus:border-[#94060b]"
+                      className="w-full border border-slate-200 bg-white px-4 py-2.5 rounded-xl text-xs font-semibold outline-none focus:border-[#E61A22] text-slate-900"
                       disabled={isSubmitting}
                     />
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-sans font-bold text-[10px] uppercase tracking-wider text-gray-500">Preferred Encounter Service</label>
+                  <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Preferred Encounter Service</label>
                   <select
                     value={visitService}
                     onChange={(e) => setVisitService(e.target.value)}
-                    className="w-full border border-gray-200 bg-white px-4 py-3 rounded-xl text-xs font-bold outline-none focus:border-[#94060b]"
+                    className="w-full border border-slate-200 bg-white px-4 py-3 rounded-xl text-xs font-bold outline-none focus:border-[#E61A22] text-slate-900"
                     disabled={isSubmitting}
                   >
-                    <option value="Sunday Morning Word Service (09:00 AM)">Sunday Morning Word Service (09:00 AM)</option>
-                    <option value="Sunday Prophetic Worship Service (11:00 AM)">Sunday Prophetic Worship Service (11:00 AM)</option>
-                    <option value="Wednesday Spiritual Elevate Bible Study (06:30 PM)">Wednesday Bible Study Academy (06:30 PM)</option>
-                    <option value="Friday Breakthrough Midnight Vigil (11:00 PM)">Friday Breakthrough Vigil (11:00 PM)</option>
+                    <option value="Sunday Celebration Service - 8:00 AM">Sunday Celebration Service - 8:00 AM</option>
+                    <option value="Monday Prayer Meeting - 6:00 PM">Monday Prayer Meeting - 6:00 PM</option>
+                    <option value="Tuesday Bible Study - 6:00 PM">Tuesday Bible Study - 6:00 PM</option>
                   </select>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-sans font-bold text-[10px] uppercase tracking-wider text-gray-500">Proposed Visitation Date</label>
+                  <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Proposed Visitation Date</label>
                   <input
                     type="date"
                     required
                     value={visitDate}
                     onChange={(e) => setVisitDate(e.target.value)}
-                    className="w-full border border-gray-200 bg-white px-4 py-3 rounded-xl text-xs font-bold outline-none focus:border-[#94060b] text-gray-700"
+                    className="w-full border border-slate-200 bg-white px-4 py-3 rounded-xl text-xs font-bold outline-none focus:border-[#E61A22] text-slate-900"
                     disabled={isSubmitting}
                   />
                 </div>
@@ -336,10 +337,10 @@ export default function App() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full mt-2 font-sans font-bold text-xs uppercase tracking-widest py-4 rounded-xl transition-all shadow-md shadow-[#94060b]/10 cursor-pointer text-center relative flex items-center justify-center gap-2 ${
+                  className={`w-full mt-2 font-sans font-bold text-[0.65rem] uppercase tracking-widest py-4 rounded-xl transition-all shadow-md shadow-[#E61A22]/10 cursor-pointer text-center relative flex items-center justify-center gap-2 ${
                     isSubmitting 
                       ? 'bg-slate-400 text-white cursor-not-allowed opacity-80 scale-[0.98]' 
-                      : 'bg-[#94060b] hover:bg-[#730408] text-white hover:scale-105 active:scale-105 transition-transform duration-100 ease-out'
+                      : 'bg-[#E61A22] hover:bg-[#730408] text-white hover:scale-105 active:scale-105 transition-transform duration-100 ease-out'
                   }`}
                 >
                   {isSubmitting ? (
@@ -357,20 +358,20 @@ export default function App() {
               </form>
             ) : (
               <div className="text-center py-6 flex flex-col items-center">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mb-6 shadow-xs">
+                <div className="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mb-6 shadow-xs animate-bounce">
                   <CheckCircle className="w-8 h-8" />
                 </div>
                 <h3 className="font-sans font-bold text-lg uppercase tracking-wider text-[#2D3748] mb-1">
-                  Visitation Booked!
+                  Reservation Booked!
                 </h3>
-                <p className="text-xs text-[#94060b] font-bold uppercase tracking-wider mb-3">
-                  Welcome to the Loveworld Sanctuary!
+                <p className="text-xs text-[#E61A22] font-bold uppercase tracking-wider mb-3">
+                  We're pleased to have you're coming!
                 </p>
-                <p className="font-sans text-xs text-gray-500 leading-relaxed max-w-sm mb-6">
-                  Thank you, <strong>{visitName}</strong>. Our guest integration captains have registered your visitation for <strong>{visitDate}</strong> to join the <strong>{visitService}</strong>. A guide is transmitted to <strong>{visitEmail}</strong>.
+                <p className="font-sans text-xs text-slate-500 leading-relaxed max-w-sm mb-6 font-light">
+                  Thank you, <strong>{visitName}</strong>. Our HOSPITALITY TEAM have registered your visitation for <strong>{visitDate}</strong> to join the <strong>{visitService}</strong>. <br />A guide is transmitted to <strong>{visitEmail}</strong>.
                 </p>
 
-                <div className="bg-gray-50 p-4 rounded-2xl w-full text-left border border-gray-100 text-xs text-gray-600 flex flex-col gap-2 mb-6">
+                {/* <div className="bg-gray-50 p-4 rounded-2xl w-full text-left border border-gray-100 text-xs text-gray-600 flex flex-col gap-2 mb-6">
                   <div className="flex items-center gap-1.5">
                     <Clock className="w-4 h-4 text-[#94060b]" />
                     <span>Host Assigned: Loveworld Guest Angels Room</span>
@@ -379,11 +380,11 @@ export default function App() {
                     <ShieldCheck className="w-4 h-4 text-[#94060b]" />
                     <span>Reserved sanctuary seating slots included.</span>
                   </div>
-                </div>
+                </div> NO PROMISES PLEASE 😅*/}
 
                 <button
                   onClick={closeVisitModal}
-                  className="w-full bg-[#94060b] hover:bg-[#730408] text-white font-sans font-bold text-xs uppercase tracking-widest py-3.5 rounded-xl cursor-pointer"
+                  className="w-full bg-[#E61A22] hover:bg-[#730408] text-white font-sans font-bold text-[o.6rem] uppercase tracking-widest py-3.5 rounded-xl cursor-pointer"
                 >
                   Conclude Reservation
                 </button>

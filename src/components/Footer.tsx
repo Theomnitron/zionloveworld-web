@@ -54,7 +54,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               </div>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm font-light">
-              Preaching structural holiness, activation of supernatural prayer breakthroughs, and cultivating a community of flawless covenant integrity worldwide.
+              Preaching the true Word of God, activating supernatural liberations, and cultivating a community of Goldy covenant integrity worldwide.
             </p>
             
             <div className="space-y-3.5 text-xs text-slate-400">
@@ -78,7 +78,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               style={{ color: "#ffffff" }}
             >
               {addressCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-              {addressCopied ? 'Address Copied!' : 'Copy Altar Address'}
+              {addressCopied ? 'Address Copied!' : 'Copy Address'}
             </button>
           </div>
 
@@ -95,12 +95,6 @@ export default function Footer({ onNavigate }: FooterProps) {
                 Top of Page
               </button>
               <button 
-                onClick={(e) => handleLinkClick(e, 'home', 'who-we-are')} 
-                className="text-left hover:text-white hover:underline transition-colors uppercase tracking-wider cursor-pointer active:scale-105 transition-transform duration-100 ease-out font-sans text-xs"
-              >
-                Our Manifesto
-              </button>
-              <button 
                 onClick={(e) => handleLinkClick(e, 'home', 'theme-of-the-year')} 
                 className="text-left hover:text-white hover:underline transition-colors uppercase tracking-wider cursor-pointer active:scale-105 transition-transform duration-100 ease-out font-sans text-xs"
               >
@@ -110,13 +104,19 @@ export default function Footer({ onNavigate }: FooterProps) {
                 onClick={(e) => handleLinkClick(e, 'home', 'weekly-services')} 
                 className="text-left hover:text-white hover:underline transition-colors uppercase tracking-wider cursor-pointer active:scale-105 transition-transform duration-100 ease-out font-sans text-xs"
               >
-                Covenant Assemblies
+                Weekly Services
+              </button>
+              <button 
+                onClick={(e) => handleLinkClick(e, 'home', 'who-we-are')} 
+                className="text-left hover:text-white hover:underline transition-colors uppercase tracking-wider cursor-pointer active:scale-105 transition-transform duration-100 ease-out font-sans text-xs"
+              >
+                Who We Are
               </button>
               <button 
                 onClick={(e) => handleLinkClick(e, 'sermons')} 
                 className="text-left hover:text-white hover:underline transition-colors uppercase tracking-wider cursor-pointer active:scale-105 transition-transform duration-100 ease-out font-sans text-xs"
               >
-                Sermon Medias
+                Sermon Media
               </button>
               <button 
                 onClick={(e) => handleLinkClick(e, 'home', 'giving')} 
