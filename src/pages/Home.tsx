@@ -718,7 +718,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             {/* FIRST COLUMN (LEFT ON DESKTOP - MOUNTED FIRST IN DOM FOR MOBILE TOP PLACEMENT) */}
             <ScrollReveal className="flex flex-col justify-center">
               <div className="mb-4">
-                <span className="inline-block bg-[#E61A22]/10 text-[#E61A22] font-sans font-bold text-xs uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-md">
+                <span className="inline-block bg-[#E61A22]/10 text-[#E61A22] font-sans font-bold text-[0.6rem] md:text-xs uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-md">
                   FOUNDATIONAL MANDATE
                 </span>
               </div>
@@ -798,7 +798,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       <section id="upcoming-events" className="py-24 bg-slate-900 border-b border-slate-200"> {/* New Read HERE! */}
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-            <span className="font-sans font-bold text-[0.6rem] uppercase tracking-[0.2em] text-[#E61A22] bg-white/80 px-4 py-1.5 rounded-full mb-4 inline-block">
+            <span className="font-sans font-bold text-[0.6rem] md:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white/80 px-4 py-1.5 rounded-full mb-4 inline-block">
               Divine Appointed Times
             </span>
             <h2 className="font-sans font-extrabold text-[1.5rem] md:text-5xl text-white uppercase tracking-tight">
@@ -869,7 +869,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
 
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-            <span className="font-sans font-bold text-[0.6rem] uppercase tracking-[0.2em] text-[#E61A22] bg-black/10 px-4 py-1.5 rounded-full mb-4 inline-block">
+            <span className="font-sans font-bold text-[0.6rem] md:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-black/10 px-4 py-1.5 rounded-full mb-4 inline-block">
               Kingdom Partnership
             </span>
             <h2 className="font-sans font-extrabold text-[1.5rem] md:text-5xl text-[#0A0A0A] tracking-tight uppercase leading-tight">
