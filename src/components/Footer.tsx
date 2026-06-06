@@ -130,7 +130,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           {/* RIGHT COLUMN: LOCAL SEO MAP CONTAINER */}
           <div className="flex flex-col gap-4">
             <h4 className="font-sans font-bold text-xs uppercase tracking-widest text-white border-b border-white/5 pb-2">
-              Altar Spatial Location Coordinates
+              Zion Loveworld Location Coordinates
             </h4>
             <div className="w-full h-64 bg-[#1A1A1A] border border-slate-800 rounded-xl overflow-hidden relative group">
               <div className="absolute inset-0 bg-slate-950 opacity-40 mix-blend-overlay" />
@@ -139,7 +139,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <div className="flex items-center gap-1.5 mb-1 animate-pulse">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#E61A22]" />
                     <span className="text-[8px] font-sans font-bold tracking-widest uppercase text-slate-300">
-                      Sanctuary Altar
+                      Church Auditorium
                     </span>
                   </div>
                   <h4 className="text-[10px] font-bold text-white uppercase tracking-tight font-sans">

@@ -546,13 +546,13 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             {/* Layout content inside the slide for synchronized fading */}
             <div className="absolute inset-0 flex items-center justify-center z-20">
               <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center">
-                <span className="font-sans font-bold text-[0.45rem] lg:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white px-3 py-1.5 rounded-full mb-4 block scale-105 select-none shadow-md">
+                <span className="font-sans font-bold text-[0.4rem] lg:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white px-2 py-1.5 rounded-full mb-4 block scale-105 select-none shadow-md">
                   Welcome to Zion Loveworld Gospel Ministry International
                 </span>
-                <h1 className="font-sans font-extrabold text-[2.1rem] sm:text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-tight max-w-4xl mb-3 text-white drop-shadow-md">
+                <h1 className="font-sans font-extrabold text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-tight max-w-4xl mb-3 text-white drop-shadow-md">
                   {slide.headline}
                 </h1>
-                <p className="font-sans text-slate-100 text-[0.65rem] md:text-sm max-w-2xl mb-12 leading-relaxed font-semibold drop-shadow-sm">
+                <p className="font-sans text-slate-100 text-[0.6rem] md:text-sm max-w-2xl mb-12 leading-relaxed font-semibold drop-shadow-sm">
                   {slide.subtext}
                 </p>
                 
@@ -644,14 +644,14 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             
             {/* Typography Content Column */}
             <ScrollReveal delay={150} className="flex flex-col justify-center">
-              <span className="text-[#E61A22] font-sans font-extrabold text-xs uppercase tracking-[0.2em] mb-3 inline-block">
+              <span className="text-[#E61A22] font-sans font-extrabold text-[0.6rem] lg:text-[0.8rem] uppercase tracking-[0.2em] mb-3 inline-block">
                 Prophetic Declaration for the Year 2026
               </span>
-              <h2 className="font-sans font-extrabold text-[1.5rem] md:text-4xl lg:text-[3rem] tracking-tight uppercase leading-tight mb-5">
+              <h2 className="font-sans font-extrabold text-[1.5rem] md:text-4xl lg:text-[2.7rem] tracking-tight uppercase leading-tight mb-5">
                 {currentThemeData.themeTitle}
               </h2>
               <div className="h-1.5 w-20 bg-[#E61A22] mb-6 rounded-full" />
-              <p className="font-sans text-sm md:text-base text-slate-400 italic font-semibold leading-relaxed border-l-4 border-[#E61A22] pl-4">
+              <p className="font-sans text-xs md:text-base text-slate-400 italic font-semibold leading-relaxed border-l-4 border-[#E61A22] pl-4">
                 "{currentThemeData.scriptureReference}"
               </p>
             </ScrollReveal>
@@ -798,13 +798,13 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       <section id="upcoming-events" className="py-24 bg-slate-900 border-b border-slate-200"> {/* New Read HERE! */}
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-            <span className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white/80 px-4 py-1.5 rounded-full mb-4 inline-block">
+            <span className="font-sans font-bold text-[0.6rem] uppercase tracking-[0.2em] text-[#E61A22] bg-white/80 px-4 py-1.5 rounded-full mb-4 inline-block">
               Divine Appointed Times
             </span>
-            <h2 className="font-sans font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
+            <h2 className="font-sans font-extrabold text-[1.5rem] md:text-5xl text-white uppercase tracking-tight">
               Upcoming Programmes
             </h2>
-            <p className="font-sans text-slate-650 text-xs md:text-sm mt-3 leading-relaxed" style={{ color: "#ffffffbb" }}>
+            <p className="font-sans text-slate-650 text-[0.7rem] md:text-sm mt-3 leading-relaxed" style={{ color: "#ffffffbb" }}>
               Our special programmes schedule will be listed here in advance. Mark your calendar and prepare your spirit for these high-voltage spiritual encounters designed to align your destiny with divine realities.
             </p>
           </ScrollReveal>
@@ -869,10 +869,10 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
 
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-            <span className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-black/10 px-4 py-1.5 rounded-full mb-4 inline-block">
+            <span className="font-sans font-bold text-[0.6rem] uppercase tracking-[0.2em] text-[#E61A22] bg-black/10 px-4 py-1.5 rounded-full mb-4 inline-block">
               Kingdom Partnership
             </span>
-            <h2 className="font-sans font-extrabold text-3xl md:text-5xl text-[#0A0A0A] tracking-tight uppercase leading-tight">
+            <h2 className="font-sans font-extrabold text-[1.5rem] md:text-5xl text-[#0A0A0A] tracking-tight uppercase leading-tight">
               Sowing into the Vision
             </h2>
             <p className="font-sans text-slate-350 text-xs md:text-sm mt-3 leading-relaxed" style={{ color: "#0a0a0abd" }}>
@@ -891,7 +891,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                     Official Account Details
                   </span>
                   <h3 className="font-sans font-extrabold text-xl text-[#0A0A0A] uppercase tracking-tight mb-5">
-                    Direct Core Givings
+                    Direct Givings
                   </h3>
                   <p className="font-sans text-xs text-slate-600 leading-relaxed font-light mb-6">
                     For manual bank deposits, online wire transfers, or direct local accounts, please take advantage our official corporate account details below:
@@ -905,7 +905,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                         <span className="text-[9px] font-sans font-bold text-slate-400 uppercase tracking-widest block">Bank Partner</span>
                         <span className="text-sm font-extrabold text-[#0a0a0a] tracking-tight">Zenith Bank Plc</span>
                       </div>
-                      <span className="text-[9px] font-sans font-bold text-slate-400 bg-slate-200/50 px-2.5 py-1 rounded-md uppercase">Core Commercial</span>
+                      <span className="text-[0.5rem] font-sans font-bold text-slate-400 bg-slate-200/50 px-2.5 py-1 rounded-md uppercase">Core Commercial</span>
                     </div>
 
                     {/* Account Name */}
@@ -938,9 +938,9 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                           navigator.clipboard.writeText("1013405642");
                           alert("Account number 1013405642 copied to clipboard!");
                         }}
-                        className="text-[7px] uppercase font-bold text-[#E61A22] hover:underline cursor-pointer bg-[#94060b]/5 px-3 py-1.5 rounded-lg border border-[#94060b]/10 hover:bg-[#94060b]/10 active:scale-105 transition-all duration-100 ease-out"
+                        className="text-[0.5rem] uppercase font-bold text-[#E61A22] hover:underline cursor-pointer bg-[#94060b]/5 px-1 py-1.5 rounded-lg border border-[#94060b]/10 hover:bg-[#94060b]/10 active:scale-105 transition-all duration-100 ease-out"
                       >
-                        Copy Account Number
+                        Copy Number
                       </button>
                     </div>
                   </div>

@@ -163,7 +163,7 @@ export default function Gallery({ onNavigate }: GalleryProps) {
         <ScrollReveal>
           <div id="gallery-header-section" className="border-b border-gray-100 pb-10 mb-12">
             <div className="flex items-center gap-2 mb-2">
-              <span className="inline-block bg-[#94060b]/10 text-[#E61A22] font-sans font-bold text-xs uppercase tracking-[0.2em] px-3.5 py-1 rounded-md">
+              <span className="inline-block bg-[#94060b]/10 text-[#E61A22] font-sans font-bold text-[0.6rem] md:text-xs uppercase tracking-[0.2em] px-3.5 py-1 rounded-md">
                 Photo Archives
               </span>
             </div>

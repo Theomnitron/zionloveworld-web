@@ -13,7 +13,7 @@ export interface ThemeData {
 }
 
 export const currentThemeData: ThemeData = {
-  imageUrl: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/others/Prophetic%20Declaration%20for%202026.png",
+  imageUrl: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/others/IN%20THE%20YEAR%202026.png",
   themeTitle: "AS WE BEHOLD HIM, WE ARE CHANGED FROM GLORY TO GLORY",
   scriptureReference: "But we all, with open face beholding as in a glass the glory of the Lord, are changed into the same image from glory to glory, even as by the Spirit of the Lord. — 2 Cor. 3:18"
 };
