@@ -54,13 +54,13 @@ export default function Footer({ onNavigate }: FooterProps) {
               </div>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm font-light">
-              Preaching the true Word of God, activating supernatural liberations, and cultivating a community of Goldy covenant integrity worldwide.
+              Preaching the true Word of God and activating supernatural liberations through the knowledge of God worldwide.
             </p>
             
             <div className="space-y-3.5 text-xs text-slate-400">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#E61A22] shrink-0 mt-0.5" style={{ color: "#ffffff" }} />
-                <span>Dutse Makaranta, Abuja, Nigeria</span>
+                <span>Dutse Makaranta, FCT Abuja, Nigeria</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#E61A22] shrink-0" style={{ color: "#ffffff" }} />

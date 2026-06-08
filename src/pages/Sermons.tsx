@@ -25,61 +25,12 @@ import {
 import { SERMONS, Sermon } from '../data/sermons';
 import { supabase } from '../lib/supabase';
 import { ChurchView } from '../types/church';
+import ScrollReveal from '../components/ScrollReveal'
 import Footer from '../components/Footer';
 
 interface SermonsProps {
   onSowSeedClick: () => void;
   onNavigate?: (view: ChurchView, anchor?: string) => void;
-}
-
-// Reusable scroll reveal component with native Intersection Observer
-function ScrollReveal({ 
-  children, 
-  delay = 0, 
-  className = ""
-}: { 
-  children: React.ReactNode; 
-  delay?: number;
-  className?: string;
-  key?: React.Key;
-}) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { 
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
-    );
-    
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-    
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out transform ${
-        isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-[0.98]'
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
 }
 
 export default function Sermons({ onSowSeedClick, onNavigate }: SermonsProps) {
@@ -376,7 +327,7 @@ export default function Sermons({ onSowSeedClick, onNavigate }: SermonsProps) {
               Sermons & Teachings
             </h1>
             <p className="font-sans text-sm md:text-base text-slate-600 mt-4 max-w-2xl leading-relaxed">
-              Unpack relatable exposotions, life-transforming revelations, and divine breakthrough declarations for your systematic spiritual development. Listen to complete sessions direct from Zion Loveworld's pulpit.
+              Unpack relatable exposotions, life-transforming revelations, and divine breakthrough declarations for your systematic spiritual and human development. Listen to complete sessions direct from Zion Loveworld's pulpit.
             </p>
           </div>
         </ScrollReveal>

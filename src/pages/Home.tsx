@@ -31,6 +31,8 @@ import {
 import { supabase } from '../lib/supabase';
 import { SERMONS } from '../data/sermons';
 import { GALLERY_ITEMS } from '../data/gallery';
+import ScrollReveal from '../components/ScrollReveal';
+import ContactUs from '../components/ContactUs';
 import Footer from '../components/Footer';
 
 interface HomeProps {
@@ -46,53 +48,6 @@ interface ScrollRevealProps {
   key?: React.Key;
 }
 
-// Reusable scroll reveal component with native Intersection Observer
-function ScrollReveal({ 
-  children, 
-  delay = 0, 
-  className = "",
-  elementId
-}: ScrollRevealProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { 
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
-    );
-    
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-    
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      id={elementId}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out transform ${
-        isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-[0.98]'
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
-
 export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
   // 1. Hero Automated & Interactive Carousel State
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -106,19 +61,19 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
 
   const defaultSlides: SlideData[] = [
     {
-      bgImage: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/banners/Ground-lvl.jpg",
-      headline: "GROW IN UNDERSTANDING",
-      subtext: "Step into an atmosphere of dynamic Word teaching and covenant community."
+      bgImage: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/banners/banner%202.png",
+      headline: "Deliverance by Knowledge Of God",
+      subtext: "And ye shall know the truth, and the truth shall make you free"
     },
     {
-      bgImage: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/banners/banner%202.png",
-      headline: "THE WORD OF GOD IS QUICK AND POWERFUL!",
+      bgImage: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/banners/Ground-lvl.jpg",
+      headline: "Don't just be ever learning; Arrive at the knowledge of the Truth!",
       subtext: "Experience deep restoration and spiritual empowerment by The Word of God."
     },
     {
       bgImage: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/gallery/Children-group.jpg",
-      headline: "JOIN OUR FELLOWSHIP!",
-      subtext: "Ignite your faith and worship with us globally or locally."
+      headline: "Worship with Us!",
+      subtext: "Globally or Locally; Fill your Spirit, Soul, and Body with Light"
     }
   ];
 
@@ -181,7 +136,8 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
         const { data: bannersData, error: bannersError } = await supabase
           .from('banners')
           .select('title, description, image_url, active')
-          .eq('active', true);
+          .eq('active', true)
+          .order('id', { ascending: true })
 
         if (bannersError) throw bannersError;
 
@@ -201,7 +157,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
           }
         }
       } catch (err) {
-        console.warn("Supabase banners query failed, invoking fallback structure:", err);
+        console.warn("banners query failed, invoking fallback structure:", err);
         if (active) {
           setBanners(defaultSlides);
           setUseBannersFallback(true);
@@ -357,7 +313,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
     setSubmitError(null);
 
     // Hardcoded credentials for instant client-side preview execution
-    const sheetsWebhookUrl = import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK_URL as string;
+    const sheetsVisitWebhookUrl = import.meta.env.VITE_GOOGLE_SHEETS_VISIT_WEBHOOK_URL as string;
     const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
     const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
     const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
@@ -381,7 +337,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       "Proposed Date": visitDate,
       "proposedDate": visitDate,
       "date": visitDate,
-      "Timestamp": new Date().toLocaleString(),
+      "Timestamp": new Date().toLocaleString('en-GB', { timeZone: 'Africa/Lagos' }),
       "timestamp": new Date().toISOString()
     };
 
@@ -417,7 +373,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       // Note: If testing directly inside the AI Studio web-app preview tab, 
       // strict browser sandboxing might still hide backend changes.
       const [sheetsResponse, emailjsResponse] = await Promise.all([
-        fetch(sheetsWebhookUrl, {
+        fetch(sheetsVisitWebhookUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -502,7 +458,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
     <div className="flex flex-col flex-1" id="home-view-wrapper">
       
       {/* SUCCESS TOAST NOTIFICATION BANNER */}
-      {showSuccessToast && (
+      {/* {showSuccessToast && (
         <div id="visit-success-alert-banner" className="fixed top-24 left-1/2 -translate-x-1/2 z-[999] w-full max-w-md px-4 animate-fade-in-down">
           <div className="bg-emerald-600 text-white p-4.5 rounded-2xl shadow-2xl flex items-start gap-3 border border-emerald-500 backdrop-blur-md">
             <CheckCircle className="w-5 h-5 text-emerald-100 shrink-0 mt-0.5" />
@@ -522,7 +478,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             </button>
           </div>
         </div>
-      )}
+      )} */}
       
       {/* 1. HERO AUTOMATED CAROUSEL SECTION */}
       <section id="hero-carousel" className="relative w-full h-[650px] bg-slate-900 overflow-hidden">
@@ -546,10 +502,10 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             {/* Layout content inside the slide for synchronized fading */}
             <div className="absolute inset-0 flex items-center justify-center z-20">
               <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center">
-                <span className="font-sans font-bold text-[0.4rem] lg:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white px-2 py-1.5 rounded-full mb-4 block scale-105 select-none shadow-md">
+                <span className="font-sans font-bold text-[0.4rem] lg:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white px-2 py-1 rounded-full mb-4 block scale-105 select-none shadow-md">
                   Welcome to Zion Loveworld Gospel Ministry International
                 </span>
-                <h1 className="font-sans font-extrabold text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-tight max-w-4xl mb-3 text-white drop-shadow-md">
+                <h1 className="font-sans font-extrabold text-[1.8rem] sm:text-4xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-tight max-w-4xl mb-3 text-white drop-shadow-md">
                   {slide.headline}
                 </h1>
                 <p className="font-sans text-slate-100 text-[0.6rem] md:text-sm max-w-2xl mb-12 leading-relaxed font-semibold drop-shadow-sm">
@@ -568,7 +524,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                     onClick={() => onNavigateToView('sermons')}
                     className="bg-white hover:bg-slate-50 text-slate-950 font-sans font-bold text-[10px] md:text-xs uppercase tracking-widest px-4 md:px-8 py-3.5 md:py-4 rounded-xl hover:scale-105 active:scale-105 transition-transform duration-100 ease-out shadow-lg cursor-pointer"
                   >
-                    Watch Services
+                    Follow Services
                   </button>
                 </div>
               </div>
@@ -644,14 +600,14 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             
             {/* Typography Content Column */}
             <ScrollReveal delay={150} className="flex flex-col justify-center">
-              <span className="text-[#E61A22] font-sans font-extrabold text-[0.6rem] lg:text-[0.8rem] uppercase tracking-[0.2em] mb-3 inline-block">
+              <span className="text-[#E61A22] font-sans font-extrabold text-[0.62rem] lg:text-[0.9rem] uppercase tracking-[0.2em] mb-3 inline-block">
                 Prophetic Declaration for the Year 2026
               </span>
               <h2 className="font-sans font-extrabold text-[1.5rem] md:text-4xl lg:text-[2.7rem] tracking-tight uppercase leading-tight mb-5">
                 {currentThemeData.themeTitle}
               </h2>
               <div className="h-1.5 w-20 bg-[#E61A22] mb-6 rounded-full" />
-              <p className="font-sans text-xs md:text-base text-slate-400 italic font-semibold leading-relaxed border-l-4 border-[#E61A22] pl-4">
+              <p className="font-sans text-[0.65rem] md:text-base text-slate-400 italic font-semibold leading-relaxed border-l-4 border-[#E61A22] pl-4">
                 "{currentThemeData.scriptureReference}"
               </p>
             </ScrollReveal>
@@ -664,7 +620,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       <section id="weekly-services" className="bg-slate-50 py-20 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[#E61A22] font-sans font-extrabold text-xs uppercase tracking-[0.2em] mb-2 block">
+            <span className="inline-block text-[#E61A22] bg-[#E61A22]/10 font-sans font-extrabold text-xs uppercase tracking-[0.2em] mb-2 block px-3.5 py-1.5 rounded-md">
               Fellowship Schedule
             </span>
             <h2 className="font-sans font-extrabold text-2xl md:text-4xl text-[#0A0A0A] uppercase tracking-tight">
@@ -718,22 +674,25 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
             {/* FIRST COLUMN (LEFT ON DESKTOP - MOUNTED FIRST IN DOM FOR MOBILE TOP PLACEMENT) */}
             <ScrollReveal className="flex flex-col justify-center">
               <div className="mb-4">
-                <span className="inline-block bg-[#E61A22]/10 text-[#E61A22] font-sans font-bold text-[0.6rem] md:text-xs uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-md">
+                <span className="inline-block bg-[#E61A22]/10 text-[#E61A22] font-sans font-extrabold text-[0.6rem] md:text-xs uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-md">
                   FOUNDATIONAL MANDATE
                 </span>
               </div>
 
               <h2 className="font-sans font-extrabold text-2xl md:text-4xl text-[#0A0A0A] tracking-tight uppercase mb-6 leading-tight">
-                THE WORD OF GOD AND HOLINESS
+                KNOWLEDGE FOR ADEQUATE CHRISTIAN life
               </h2>
               
               <div className="space-y-5 text-[#2D3748] font-sans text-sm md:text-base leading-relaxed">
                 <p>
-                  Established in August 2011, Zion Loveworld Gospel Ministry International has stood as a beacon of uncompromised truth.
-                  Our history is a testament to the transformative power of God’s Word, leading many into deeper understanding of God and spiritual growth.
+                  The Devil's strategy is to keep you ignorant. The Bible testifies that the children of Issachar had understanding to KNOW what Israel supposed to do. That means ignorance is a diasdvantage againt the powers of darkness.
+                  And so you see the children of God today perishing (Hosea 4:6), because of somethings they don't know. Sin can be dealt with! Your situation can be turnaround! But do you KNOW?
+                  It is those who KNOW their God that will be strong and do exploits. You don't have to be a puppet in the hands of Satan; neither does your life. The solution is a knowledge in God that you must KNOW and act upon.
+                  And you will KNOW the true; and the truth will make you free!
                 </p>
                 <p>
-                  Our mandate is anchored in scripture: to preach the true Word of God, Holiness, and to activate supernatural liberations — Luke 4:18, Obadiah 1:17.
+                  Established in August 2011, Zion Loveworld Gospel Ministry International has stood as a beacon of uncompromised truth.
+                  Our history is a testament to the transformative power of God’s Word, leading many into deeper understanding of God, spiritual growth, physical liberation.
                   Under the directive of our leadership, we remain dedicated to bringing believers into the understanding of God's Word for their eternal security, spiritual destinies, and human endeavours.
                 </p>
               </div>
@@ -783,7 +742,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                     {CHURCH_INFO.pastorName}
                   </h4>
                   <p className="font-sans text-[11px] text-slate-300 leading-relaxed italic">
-                    "You are welcome you to this physical and digital atmosphere of deep uncompromised teachings of God's Word and Godly covenant community."
+                    "Hello there! Yes, you reading this. You are welcome to this physical and digital atmosphere of deep uncompromised teachings of God's Word and a Godly covenant community. <br/>God bless you!"
                   </p>
                 </div>
               </div>
@@ -798,7 +757,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       <section id="upcoming-events" className="py-24 bg-slate-900 border-b border-slate-200"> {/* New Read HERE! */}
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-            <span className="font-sans font-bold text-[0.6rem] md:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white/80 px-4 py-1.5 rounded-full mb-4 inline-block">
+            <span className="font-sans font-extrabold text-[0.6rem] md:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-white/70 px-3.5 py-1.5 rounded-md mb-4 inline-block">
               Divine Appointed Times
             </span>
             <h2 className="font-sans font-extrabold text-[1.5rem] md:text-5xl text-white uppercase tracking-tight">
@@ -859,17 +818,21 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
       </section>
 
 
+      {/* 6. Contact Us SECTION: Testimony, Prayer Request, Suggestions, etc */}
+      <ContactUs />
+
+
       {/* 6. GIVING SECTION: Streamlined Manual Transfer Suite */}
       <section 
         id="giving" 
         className="relative py-24 bg-cover bg-center overflow-hidden border-b border-slate-900"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1490557142725-ed8591afb8e1?q=80&w=1280')" }}
       >
-        <div className="absolute inset-0 bg-gray-50 z-0" />
+        <div className="absolute inset-0 bg-white border-b border-gray-900 z-0" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-            <span className="font-sans font-bold text-[0.6rem] md:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-black/10 px-4 py-1.5 rounded-full mb-4 inline-block">
+            <span className="font-sans font-extrabold text-[0.6rem] md:text-xs uppercase tracking-[0.2em] text-[#E61A22] bg-[#E61A22]/10 px-3.5 py-1.5 rounded-md mb-4 inline-block">
               Kingdom Partnership
             </span>
             <h2 className="font-sans font-extrabold text-[1.5rem] md:text-5xl text-[#0A0A0A] tracking-tight uppercase leading-tight">
@@ -883,7 +846,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
           <div className="flex justify-center">
             {/* MANUAL BANK TRANSFER - UNIQUE EXQUISITE CARD SHIELD */}
             <ScrollReveal delay={150} className="w-full max-w-xl">
-              <div className="bg-white border-2 border-[#E61A22] rounded-2xl p-6 md:p-10 shadow-2xl flex flex-col justify-between relative overflow-hidden w-full">
+              <div className="bg-white border-2 border-[#E61A22] rounded-2xl p-6 md:p-10 shadow-xl flex flex-col justify-between relative overflow-hidden w-full">
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#94060b]/5 rounded-full pointer-events-none" />
                 
                 <div>
@@ -1031,7 +994,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Phone (for SMS alert)</label>
+                    <label className="font-sans font-bold text-[0.6rem] uppercase tracking-wider text-slate-500">Phone No (for SMS)</label>
                     <input
                       type="tel"
                       placeholder="+234 (0) 803 123 4567"
@@ -1105,7 +1068,7 @@ export default function Home({ onNavigateToView, onPlanVisit }: HomeProps) {
                 </p>
                 
                 <p className="font-sans text-xs text-slate-500 leading-relaxed max-w-sm mb-6 font-light">
-                  Thank you, <strong>{visitName}</strong>. Our HOSPITALITY TEAM have registered your visitation for <strong>{visitDate}</strong> to join the <strong>{visitService}</strong>. <br />A guide is transmitted to <strong>{visitEmail}</strong>.
+                  Thank you, <strong>{visitName}</strong>. Our HOSPITALITY TEAM have registered your visitation for <strong>{visitDate}</strong> to join the <strong>{visitService}</strong>. <br />A guide has been transmitted to <strong>{visitEmail}</strong>.
                 </p>
 
                 <button

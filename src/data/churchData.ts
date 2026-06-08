@@ -15,12 +15,13 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const CHURCH_INFO: ChurchInfo = {
   name: "Zion Loveworld Gospel Ministry International",
+  logo: "https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/others/Zion%20Logo.png",
   vision: "To broadcast the unfathomable love and redemption of Jesus Christ, building a global sanctuary of active disciples equipped with unwavering faith and grounded in active service.",
   mission: "Equipping lives through dynamic Word teaching, pure prophetic worship, global community outreach, and systematic discipleship, elevating a generation of leaders to dominate in every sphere.",
   pastorName: "Bishop Olaitan O. Emmanuel",
   phone: "+234 (0) 8118886806",
-  email: "zionloveworld@gmail.com",
-  address: "Zion Loveworld Cathedral, Dutse Makaranta, FCT Abuja, Nigeria",
+  email: "zionloveworldministry@gmail.com",
+  address: "Zion Loveworld Avenue, Dutse Makaranta, FCT Abuja, Nigeria",
   serviceTimes: [
     { day: "Sunday", time: "08:00 AM - 11:00 AM", type: "Sunday Celebration Service" },
     { day: "Monday", time: "06:00 PM - 07:00 PM", type: "Prayer Meeting" },

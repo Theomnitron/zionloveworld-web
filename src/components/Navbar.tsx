@@ -58,6 +58,14 @@ export default function Navbar({ currentView, onNavigate, onPlanVisit }: NavbarP
   }, [currentView]);
 
   const handleNavItemClick = (item: NavItem) => {
+    // If we're already on the home view and navigating to an anchor, trigger native smooth scroll immediately
+    if (item.view === 'home' && item.anchor && currentView === 'home') {
+      const targetElement = document.getElementById(item.anchor);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    // Propagate navigation action up to core main view Router
     onNavigate(item.view, item.anchor);
     setMobileMenuOpen(false);
   };
@@ -80,7 +88,7 @@ export default function Navbar({ currentView, onNavigate, onPlanVisit }: NavbarP
             >
               <div className="w-12 h-12 rounded-full flex items-center justify-center">
                 <img 
-                  src="https://zdpkrcvdtrcvvwqmtuwm.supabase.co/storage/v1/object/public/others/Zion%20Logo.png" 
+                  src={CHURCH_INFO.logo}
                   alt="Zion Logo" 
                   className="w-full h-full object-contain rounded-full"
                   referrerPolicy="no-referrer"

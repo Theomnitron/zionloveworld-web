@@ -41,7 +41,7 @@ export default function App() {
   const [visitEmail, setVisitEmail] = useState('');
   const [visitPhone, setVisitPhone] = useState('');
   const [visitDate, setVisitDate] = useState('');
-  const [visitService, setVisitService] = useState('Sunday Morning 09:00 AM');
+  const [visitService, setVisitService] = useState('Sunday Celebration Service - 8:00 AM');
   const [visitComplete, setVisitComplete] = useState(false);
 
   // Asynchronous status controls
@@ -65,9 +65,9 @@ export default function App() {
     setSubmitError(null);
 
     // Hardcoded credentials for instant client-side preview execution
-    const sheetsWebhookUrl = import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK_URL as string;
+    const sheetsVisitWebhookUrl = import.meta.env.VITE_GOOGLE_SHEETS_VISIT_WEBHOOK_URL as string;
     const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
-    const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+    const emailjsTemplateId = import.meta.env.VITE_EMAILJS_VISIT_TEMPLATE_ID as string;
     const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
 
     // Format clean payloads
@@ -123,7 +123,7 @@ export default function App() {
       // 🧪 GOOGLE AI STUDIO PREVIEW SAFE DISPATCH:
       // We use parallel asynchronous dispatches with native fetch() POST requests.
       const [sheetsResponse, emailjsResponse] = await Promise.all([
-        fetch(sheetsWebhookUrl, {
+        fetch(sheetsVisitWebhookUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -142,15 +142,15 @@ export default function App() {
       // 1. Check if Google Sheets API rejected the row submission
       if (!sheetsResponse.ok) {
         const sheetsErrText = await sheetsResponse.text().catch(() => "");
-        throw new Error(`Sorry: Please input a valid Email Address`); // Real Error below
+        throw new Error(`Sorry: Please vhskdk a valid Email Address`); // Real Error below
         // throw new Error(`Google Sheets Error (${sheetsResponse.status}): ${sheetsErrText || "Check Sheet.best credentials"}`);
       }
 
       // 2. Check if EmailJS API rejected the message structure
       if (!emailjsResponse.ok) {
         const emailErrText = await emailjsResponse.text().catch(() => "");
-        throw new Error(`Sorry: Please input a valid Email Address`); // Real Error below
-        // throw new Error(`EmailJS Mail Error (${emailjsResponse.status}): ${emailErrText || "Check template configurations"}`);
+        // throw new Error(`Sorry: Please input a valid Email Address`); // Real Error below
+        throw new Error(`EmailJS Mail Error (${emailjsResponse.status}): ${emailErrText || "Check template configurations"}`);
       }
 
       // 3. Set completion flag true to transition the modal inner layout to the Success screen
@@ -187,7 +187,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-white" id="main-application-frame">
       
       {/* SUCCESS TOAST NOTIFICATION BANNER */}
-      {showSuccessToast && (
+      {/* {showSuccessToast && (
         <div id="visit-success-alert-banner" className="fixed top-24 left-1/2 -translate-x-1/2 z-[999] w-full max-w-md px-4 animate-fade-in-down">
           <div className="bg-emerald-600 text-white p-4.5 rounded-2xl shadow-2xl flex items-start gap-3 border border-emerald-500 backdrop-blur-md">
             <CheckCircle className="w-5 h-5 text-emerald-100 shrink-0 mt-0.5" />
@@ -207,7 +207,7 @@ export default function App() {
             </button>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* 1. Header Navigation shell */}
       <Navbar 
@@ -349,7 +349,7 @@ export default function App() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                       </svg>
-                      <span>Processing Booking...</span>
+                      <span>Processing...</span>
                     </>
                   ) : (
                     <span>Book My Welcome Experience</span>
@@ -365,10 +365,10 @@ export default function App() {
                   Reservation Booked!
                 </h3>
                 <p className="text-xs text-[#E61A22] font-bold uppercase tracking-wider mb-3">
-                  We're pleased to have you're coming!
+                  We're pleased to know you're coming
                 </p>
                 <p className="font-sans text-xs text-slate-500 leading-relaxed max-w-sm mb-6 font-light">
-                  Thank you, <strong>{visitName}</strong>. Our HOSPITALITY TEAM have registered your visitation for <strong>{visitDate}</strong> to join the <strong>{visitService}</strong>. <br />A guide is transmitted to <strong>{visitEmail}</strong>.
+                  Thank you, <strong>{visitName}</strong>. Our HOSPITALITY TEAM have registered your visitation for <strong>{visitDate}</strong> to join the <strong>{visitService}</strong>. <br />A guide has been sent to <strong>{visitEmail}</strong>.
                 </p>
 
                 {/* <div className="bg-gray-50 p-4 rounded-2xl w-full text-left border border-gray-100 text-xs text-gray-600 flex flex-col gap-2 mb-6">
